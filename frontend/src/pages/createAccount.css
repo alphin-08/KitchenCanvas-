@@ -1,0 +1,204 @@
+.mainContainer-create {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1024px;
+    /* Restrict the maximum width */
+    min-width: 768px;
+    /* Set the minimum width */
+    min-height: 100vh;
+    /* Take up the full viewport height */
+    background-color: #2D2D2D;
+    /* App background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Optional shadow */
+    margin: 0 auto;
+    /* Center horizontally */
+    padding: 20px;
+    /* Add padding for spacing */
+}
+
+.topContainer-create {
+    margin-bottom: 50px;
+    text-align: center;
+    /* Center the text horizontally */
+}
+
+.topContainer-create h1 {
+    color: white;
+    /* Ensure the text is visible */
+    font-size: 48px;
+    /* Adjust the font size for visibility */
+}
+
+.middleContainer-create {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 100px;
+    width: 90%;
+}
+
+.middleContainer-create input {
+    width: 100%;
+    /* Adjust input width */
+    max-width: 600px;
+    /* Restrict input width */
+    height: 50px;
+    font-size: 25px;
+}
+
+.middleContainer-create input::placeholder {
+    font-size: 20px;
+    text-align: center;
+}
+
+.middleContainer-create button,
+.bottomContainer-create button {
+    border-radius: 8px;
+    box-shadow: 0 4px black;
+    font-size: 25px;
+    cursor: pointer;
+    background-color: #8A7171;
+    color: white;
+    /* Ensure text is visible on the button */
+    padding: 10px 20px;
+    /* Add padding for better appearance */
+    max-width: 300px;
+    /* Restrict button width */
+}
+
+.bottomContainer-create {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    /* Center buttons horizontally */
+}
+
+@media (max-width: 768px) {
+
+    .bottomContainer-create button {
+        width: 120px;
+        height: 50px;
+        border-radius: 8px;
+        box-shadow: 0 4px black;
+        font-size: 30px;
+        background-color: #8A7171;
+        cursor: pointer;
+    }
+
+    .middleContainer-create input {
+        width: 90%;
+        height: 50px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .middleContainer-create input::placeholder {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .mainContainer-create {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .topContainer-create {
+        display: flex;
+        flex-direction: column;
+        font-size: 25px;
+        color: white;
+        margin-top: 50px;
+    }
+
+    .topContainer-create h1 {
+        margin-bottom: 10px;
+    }
+
+    .middleContainer-create {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 50px;
+    }
+
+    .bottomContainer-create {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        gap: 2rem;
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 500px) {
+    .mainContainer-create {
+        width: 100%;
+        padding: 10px;
+        box-shadow: none;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .topContainer-create h1 {
+        font-size: 22px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .middleContainer-create input {
+        width: 90%;
+        height: 35px;
+        font-size: 14px;
+        padding: 5px 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+
+    .middleContainer-create input::placeholder {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .bottomContainer-create button {
+        width: 90%;
+        height: 35px;
+        font-size: 14px;
+        padding: 5px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        background-color: #8A7171;
+        color: white;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px black;
+        cursor: pointer;
+    }
+
+    .bottomContainer-create button b {
+        font-size: 12px;
+    }
+
+    .middleContainer-create {
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .bottomContainer-create {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 30px;
+    }
+}
