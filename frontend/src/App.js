@@ -4,6 +4,8 @@ import MainScreen from './pages/mainPage';
 import Login from './pages/loginPage';
 import CreateAccount from './pages/createAccount';
 import Home from './pages/homePage';
+import RecipeDetails from './pages/recipeDetails';
+import NotFound from './pages/NotFound';
 
 
 function App() {
@@ -11,9 +13,11 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<MainScreen/>} />
-        <Route path="/loginP" element={<Login/>} />
+        <Route path="/loginPage" element={<Login/>} />
         <Route path="/createAccount" element={<CreateAccount />} />
-        <Route path="/homePage" element={<Home/>} />
+        <Route path="/homePage" element={<Home />} />
+        <Route path="/recipeDetails" element={<RecipeDetails />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

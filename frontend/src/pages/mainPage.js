@@ -41,7 +41,7 @@ function MainScreen() {
         if (container) {
             container.classList.add("slideUp");
             setTimeout(() => {
-                navigate("/loginP"); // Navigate to the next page
+                navigate("/loginPage"); // Navigate to the next page
             }, 500); // Wait for the animation to finish
         }
     };

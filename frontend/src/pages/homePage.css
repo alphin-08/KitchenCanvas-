@@ -1,74 +1,150 @@
 .mainContainer-home {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 1024px;
-    min-width: 768px;
     min-height: 100vh;
-    background-color: #BC4749;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: #DAC99B;
     margin: 0 auto;
-    padding: 20px;
+    padding-top: 50px;
 }
 
-.topContainer-login {
+.veryTopContainer-home {
+    margin-bottom: 30px;
+}
+
+.veryTopContainer-home h1 {
+    font-family: "Irish Grover", serif;
+    color: #5B3817;
+    font-size: 48px;
+    margin: 0;
+}
+
+.topContainer-home {
+    display: flex;
+    gap: 1rem;
     margin-bottom: 50px;
-    text-align: center;
 }
 
-.topContainer-login h1 {
+
+.topContainer-home button {
+    background-color: #FFFFFF;
+    color: #5B3817;
+    font-family: 'Georgia', serif;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.topContainer-home h1 {
     color: black;
     font-size: 48px;
 }
 
-.middleContainer-login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    margin-bottom: 100px;
-    width: 90%;
+.topContainer-home button:hover {
+    background-color: #E8D9B9;
+    transform: translateY(-3px);
+    box-shadow: 0 6px rgba(0, 0, 0, 0.3);
 }
 
-.middleContainer-login input {
-    width: 100%;
-    /* Adjust input width */
-    max-width: 600px;
-    /* Restrict input width */
-    height: 50px;
-    font-size: 25px;
+.middleContainer-home {
+    margin-bottom: 50px;
 }
 
-.middleContainer-login input::placeholder {
-    color: black;
+.middleContainer-home input {
+    font-family: 'Georgia', serif;
     font-size: 20px;
+    padding: 10px 20px;
+    border: 2px solid #5B3817;
+    border-radius: 20px;
     text-align: center;
+    width: 300px;
+    box-shadow: 0 4px rgba(0, 0, 0, 0.2);
 }
 
-.middleContainer-login button,
-.bottomContainer-login button {
+.middleContainer-home input::placeholder {
+    color: #8A7171;
+}
+
+.bottomContainer-home button {
     border-radius: 8px;
     box-shadow: 0 4px black;
     font-size: 25px;
     cursor: pointer;
     background-color: rgb(255, 255, 255);
     color: white;
-    /* Ensure text is visible on the button */
     padding: 10px 20px;
-    /* Add padding for better appearance */
     max-width: 300px;
-    /* Restrict button width */
 }
 
-.bottomContainer-login {
+.bottomContainer-home {
     display: flex;
     flex-direction: column;
     gap: 2rem;
     align-items: center;
-    /* Center buttons horizontally */
 }
+
+
+/*Recipe Cards*/
+.bottomContainer-home {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Always 3 columns */
+    gap: 20px;
+    /* Space between grid items */
+    padding: 20px;
+    /* Ensure proper padding inside the container */
+    width: 100%;
+    max-width: calc(3 * 200px + 2 * 20px);
+    /* Adjust to fit 3 columns and 2 gaps */
+    margin: 0 auto;
+    justify-items: center;
+    /* Center items within each column */
+    box-sizing: border-box;
+    /* Ensure padding is included in the total width */
+}
+
+.recipe-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #C3B091;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 200px;
+    /* Ensure consistent card size */
+}
+
+.recipe-card img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.recipe-card p {
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    color: #5B3817;
+    margin: 0;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
 
 
 @media (max-width: 500px) {
