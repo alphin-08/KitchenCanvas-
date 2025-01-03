@@ -6,6 +6,7 @@ import CreateAccount from './pages/createAccount';
 import Home from './pages/homePage';
 import RecipeDetails from './pages/recipeDetails';
 import NotFound from './pages/NotFound';
+import SearchByIngredients from './pages/searchByIngredients'; 
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/homePage" element={<Home />} />
         <Route path="/recipeDetails" element={<RecipeDetails />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/searchByIngredients" element={<SearchByIngredients />} />
       </Routes>
     </Router>
   );
