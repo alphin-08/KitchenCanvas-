@@ -2,23 +2,17 @@ import React, { useEffect, useState } from 'react';
 import './homePage.css';
 import { useNavigate } from 'react-router-dom';
 
-
 function Home() {
-    // const dummyRecipes = Array.from({ length: 9 }, (_, index) => ({
-    //     id: index + 1,
-    //     title: `Recipe ${index + 1}`,
-    //     image: 'https://via.placeholder.com/150', // Placeholder image for now
-    // }));
-    const [recipes, setRecipes] = useState([]);
+    const [recipes, setRecipes] = useState([]); // State to store recipes
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Fetch 9 random recipes
+        // Fetch 12 random recipes from the backend
         const fetchRecipes = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/recipes');
+                const response = await fetch('http://localhost:5000/api/recipes'); // Backend endpoint
                 const data = await response.json();
-                setRecipes(data.recipes || []);
+                setRecipes(data.recipes || []); // Set recipes or empty array
             } catch (error) {
                 console.error('Error fetching recipes:', error);
             }
@@ -30,22 +24,20 @@ function Home() {
         // Navigate to the recipe details page and pass the recipe data
         navigate('/recipeDetails', { state: { recipe } });
     };
+
     return (
-        <div class="mainContainer-home">
-            <div class = "veryTopContainer-home">
+        <div className="mainContainer-home">
+            <div className="veryTopContainer-home">
                 <h1>Kitchen Canvas</h1>
             </div>
-            <div class = "topContainer-home">
+            <div className="topContainer-home">
                 <button>View Liked</button>
-                <button>Search By Ingredients</button>
+                <button onClick={() => navigate('/searchByIngredients')}>Search By Ingredients</button>
                 <button>Upload New</button>
             </div>
-
-            <div class = "middleContainer-home">
-                <input type = 'text' placeholder='Search Recipes'/>
+            <div className="middleContainer-home">
+                <input type="text" placeholder="Search Recipes" />
             </div>
-
-
             <div className="bottomContainer-home">
                 {recipes.map((recipe) => (
                     <div
@@ -59,7 +51,7 @@ function Home() {
                 ))}
             </div>
         </div>
-    ); 
+    );
 }
 
 export default Home;

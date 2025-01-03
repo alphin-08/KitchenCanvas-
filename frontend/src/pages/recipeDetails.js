@@ -4,7 +4,7 @@ import './recipeDetails.css';
 
 function RecipeDetails() {
     const location = useLocation();
-     const navigate = useNavigate();
+    const navigate = useNavigate();
     const { recipe } = location.state;
     const [showDetails, setShowDetails] = useState(false);
 

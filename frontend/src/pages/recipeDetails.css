@@ -83,6 +83,7 @@
     list-style-type: disc;
     padding-left: 20px;
     margin-bottom: 20px;
+    font-family: 'Georgia', serif;
 }
 
 .recipe-details p {
