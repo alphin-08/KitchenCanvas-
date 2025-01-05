@@ -12,7 +12,7 @@ function Home() {
             try {
                 const response = await fetch('http://localhost:5000/api/recipes'); // Backend endpoint
                 const data = await response.json();
-                setRecipes(data.recipes || []); // Set recipes or empty array
+                setRecipes(data.recipes || []);
             } catch (error) {
                 console.error('Error fetching recipes:', error);
             }
@@ -21,7 +21,6 @@ function Home() {
     }, []);
 
     const handleCardClick = (recipe) => {
-        // Navigate to the recipe details page and pass the recipe data
         navigate('/recipeDetails', { state: { recipe } });
     };
 
@@ -31,7 +30,7 @@ function Home() {
                 <h1>Kitchen Canvas</h1>
             </div>
             <div className="topContainer-home">
-                <button>View Liked</button>
+                <button onClick={() => navigate('/likedRecipes')} >View Liked</button>
                 <button onClick={() => navigate('/searchByIngredients')}>Search By Ingredients</button>
                 <button>Upload New</button>
             </div>
