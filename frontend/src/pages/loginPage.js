@@ -19,6 +19,9 @@ function Login() {
             if (response.ok) {
                 alert('Login successful!');
                 // Save user info (if needed)
+                console.log('Login successful. User ID:', data.user.id); // Debugging
+                localStorage.setItem('userId', data.user.id);
+                localStorage.setItem('username', data.user.username);
                 navigate('/homePage');
             } else {
                 alert(data.error || 'Login failed. Please try again.');

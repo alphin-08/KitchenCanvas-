@@ -53,6 +53,12 @@ app.post('/api/login', async (req, res) => {
 app.post('/api/likedRecipes', async (req, res) => {
     const { userId, recipeId, recipeTitle, recipeImage } = req.body;
 
+    console.log('Received data:', { userId, recipeId, recipeTitle, recipeImage }); // Debugging
+    
+     if (!userId || !recipeId || !recipeTitle || !recipeImage) {
+        return res.status(400).json({ error: 'Missing required fields.' });
+    }
+    
     try {
         const [result] = await pool.query(
             'INSERT INTO liked_recipes (user_id, recipe_id, recipe_title, recipe_image) VALUES (?, ?, ?, ?)',
@@ -68,6 +74,8 @@ app.post('/api/likedRecipes', async (req, res) => {
 // Get Liked Recipes for a User
 app.get('/api/likedRecipes', async (req, res) => {
     const { userId } = req.query;
+
+    console.log('Fetching liked recipes for userId:', userId); // Debugging
 
     try {
         const [rows] = await pool.query(

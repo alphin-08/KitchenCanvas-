@@ -73,58 +73,14 @@ body {
     outline: none;
 }
 
+@media (max-width: 360px) {
 
-@media (max-width: 768px) {
-
-    .topContainer h1 {
-        color: white;
-    }
-
-    .mainContainer {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100vh;
-        transform: translateY(0);
-        transition: transform 0.5s ease-in-out;
-        background-color: black;
-    }
-
-    .mainContainer.slideUp {
-        transform: translateY(-100%);
-    }
-
-    .topContainer {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-top: 80px;
-    }
-
-    .topContainer h1 {
-        margin: 5%;
-        color: white;
-    }
-
-    .bottomContainer {
-        width: 100%;
-        margin-top: 40%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .bottomContainer button {
+.bottomContainer button {
         border-radius: 8px;
         box-shadow: 0 4px black;
-        font-size: 25px;
+        font-size: 20px;
         cursor: pointer;
-        background-color: #8A7171;
+        background-color: white;
+        color: black;
     }
-
 }

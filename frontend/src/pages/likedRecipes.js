@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './likedRecipes.css';
 
@@ -6,10 +6,27 @@ function LikedRecipes() {
     const [likedRecipes, setLikedRecipes] = useState([]);
     const navigate = useNavigate();
 
+    const handleNavigate = useCallback(() => {
+        const userId = localStorage.getItem('userId');
+
+        if (!userId) {
+            alert('You need to log in to view liked recipes.');
+            navigate('/login'); // Redirect to login if userId is missing
+        }
+    }, [navigate]);
+
     useEffect(() => {
         const fetchLikedRecipes = async () => {
+        
+            const userId = localStorage.getItem('userId');
+
+            if (!userId) {
+                handleNavigate();
+                return;
+            }
+
             try {
-                const response = await fetch(`http://localhost:5000/api/likedRecipes?userId=1`); // Need to replace 1 with the logged-in userId
+                const response = await fetch(`http://localhost:5000/api/likedRecipes?userId=${userId}`); // Need to replace 1 with the logged-in userId
                 const data = await response.json();
                 setLikedRecipes(data || []);
             } catch (error) {
@@ -17,16 +34,24 @@ function LikedRecipes() {
             }
         };
         fetchLikedRecipes();
-    }, []);
+    }, [handleNavigate]);
 
     const handleRemoveLikedRecipe = async (recipeId) => {
+
+        const userId = localStorage.getItem('userId');
+
+        if (!userId) {
+            alert('You need to log in to modify liked recipes.');
+            return;
+        }
+
         try {
             const response = await fetch(`http://localhost:5000/api/likedRecipes`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ userId: 1, recipeId }), // Replace 1 with the logged-in userId
+                body: JSON.stringify({ userId, recipeId }), // Replace 1 with the logged-in userId
             });
 
             if (response.ok) {

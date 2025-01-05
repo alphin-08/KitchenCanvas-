@@ -141,70 +141,65 @@
 }
 
 
-@media (max-width: 500px) {
-    .mainContainer-login {
-        width: 100%;
-        padding: 10px;
-        box-shadow: none;
-        background-color: black;
+@media (max-width: 360px) {
+    .mainContainer-home {
+        padding-top: 20px;
+        background-color: #DAC99B;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+        width: 100%;
+        min-height: 100vh;
     }
 
-    .topContainer-login h1 {
-        font-size: 22px;
-        margin-bottom: 50px;
-        text-align: center;
-    }
-
-    .middleContainer-login input {
-        width: 90%;
-        height: 35px;
-        font-size: 14px;
-        padding: 5px 10px;
-        margin-bottom: 20px;
-        border-radius: 5px;
-    }
-
-    .middleContainer-login input::placeholder {
-        font-size: 12px;
-    }
-
-    .middleContainer-login button {
-        width: 90%;
-        height: 35px;
-        font-size: 14px;
-        padding: 5px;
-        border-radius: 5px;
+    .veryTopContainer-home h1 {
+        font-size: 32px;
+        /* Adjusted for smaller screens */
         margin-bottom: 20px;
     }
 
-    .bottomContainer-login button {
-        width: 90%;
-        font-size: 14px;
-        padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #8A7171;
-        color: white;
-        border: none;
-    }
-
-    .bottomContainer-login button b {
-        font-size: 12px;
-    }
-
-    .middleContainer-login {
-        gap: 20px;
+    .topContainer-home {
+        flex-direction: column;
+        gap: 10px;
         margin-bottom: 30px;
     }
 
-    .bottomContainer-login {
-        gap: 20px;
+    .topContainer-home button {
+        font-size: 16px;
+        padding: 8px 16px;
+        border-radius: 15px;
+    }
+
+    .middleContainer-home input {
+        width: 250px;
+        /* Reduced input width for small screens */
+        padding: 8px 16px;
+        font-size: 18px;
+    }
+
+    .bottomContainer-home {
+        display: grid;
+        grid-template-columns: 1fr;
+        /* Single column layout */
+        gap: 15px;
+        padding: 15px;
+        margin-top: 15px;
+    }
+
+    .recipe-card {
+        max-width: 100%;
+        /* Full width for cards */
+        padding: 8px;
+    }
+
+    .recipe-card img {
+        max-width: 100px;
+        /* Smaller image size */
+        height: auto;
+    }
+
+    .recipe-card p {
+        font-size: 14px;
+        /* Adjusted text size */
     }
 }

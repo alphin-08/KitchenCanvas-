@@ -18,8 +18,14 @@ function RecipeDetails() {
 
     const handleLikeRecipe = async () => {
         // Need to replace this const with actual logged-in userId
-        const userId = 1;
+        const userId = localStorage.getItem('userId');
 
+        if (!userId) {
+            alert('You need to log in to like recipes.');
+            navigate('/login'); // Redirect to login if no user is logged in
+            return;
+        }
+        
         try {
             const response = await fetch('http://localhost:5000/api/likedRecipes', {
                 method: 'POST',

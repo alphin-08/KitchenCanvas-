@@ -6,7 +6,7 @@
     justify-content: center;
     height: 100vh;
     background-color: #DAC99B;
-    font-family: 'Arial', sans-serif;
+    font-family: "Irish Grover", serif;
     text-align: center;
     padding: 20px;
 }
@@ -23,14 +23,16 @@
 }
 
 .signOut-button {
+    font-family: "Irish Grover", serif;
     padding: 10px 20px;
     font-size: 1rem;
-    background-color: #ff6347;
-    color: white;
+    background-color: white;
+    color: black;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-bottom: 20px;
 }
 
 .signOut-button:hover {
@@ -39,7 +41,7 @@
 }
 
 .backfromso{
-    font-family: 'Georgia', serif;
+    font-family: "Irish Grover", serif;
     font-size: 16px;
     padding: 10px 20px;
     background-color: #FFFFFF;
@@ -49,3 +51,8 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
     margin-bottom: 20px;
 }
+
+.backfromso:hover{
+ background-color: #e55347;
+}
+

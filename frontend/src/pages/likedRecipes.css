@@ -66,3 +66,45 @@
 .remove-button:hover {
     color: darkred;
 }
+
+@media (max-width: 360px) {
+    .likedRecipes-container {
+        padding: 10px;
+        text-align: center;
+        min-height: auto;
+    }
+
+    .likedRecipes-container h1 {
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+
+    .likedRecipes-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .recipe-card {
+        max-width: 100%;
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    .recipe-card img {
+        max-width: 150px;
+        height: auto;
+        margin-bottom: 8px;
+    }
+
+    .backfromlr {
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 6px;
+    }
+
+    .remove-button {
+        font-size: 14px;
+        margin-left: 5px;
+    }
+}
