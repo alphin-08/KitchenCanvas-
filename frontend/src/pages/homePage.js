@@ -20,9 +20,11 @@ function Home() {
         fetchRecipes();
     }, []);
 
+
     const handleCardClick = (recipe) => {
         navigate('/recipeDetails', { state: { recipe } });
     };
+
 
     return (
         <div className="mainContainer-home">
@@ -33,6 +35,7 @@ function Home() {
                 <button onClick={() => navigate('/likedRecipes')} >View Liked</button>
                 <button onClick={() => navigate('/searchByIngredients')}>Search By Ingredients</button>
                 <button>Upload New</button>
+                <button onClick={() => navigate('/signOut')}>Sign Out</button>
             </div>
             <div className="middleContainer-home">
                 <input type="text" placeholder="Search Recipes" />

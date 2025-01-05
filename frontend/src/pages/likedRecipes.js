@@ -19,22 +19,45 @@ function LikedRecipes() {
         fetchLikedRecipes();
     }, []);
 
+    const handleRemoveLikedRecipe = async (recipeId) => {
+        try {
+            const response = await fetch(`http://localhost:5000/api/likedRecipes`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId: 1, recipeId }), // Replace 1 with the logged-in userId
+            });
+
+            if (response.ok) {
+                setLikedRecipes((prevRecipes) => prevRecipes.filter((recipe) => recipe.recipe_id !== recipeId));
+            } else {
+                console.error('Failed to remove liked recipe.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+
     return (
         <div className="likedRecipes-container">
-            <h1>Liked Recipes</h1>
+            <h1>Kitchen Canvas</h1>
+            <h2>Liked Recipes</h2>
             <div className="likedRecipes-list">
                 {likedRecipes.length > 0 ? (
                     likedRecipes.map((recipe) => (
                         <div key={recipe.id} className="recipe-card" onClick={() => navigate('/recipeDetails', { state: { recipe } })}>
                             <img src={recipe.recipe_image} alt={recipe.recipe_title} />
                             <p>{recipe.recipe_title}</p>
+                            <button className="remove-button" onClick={(e) => { e.stopPropagation(); handleRemoveLikedRecipe(recipe.recipe_id); }}>X</button>
                         </div>
                     ))
                 ) : (
                     <p>No liked recipes found.</p>
                 )}
             </div>
-            <button onClick={() => navigate(-1)}>Back</button>
+            <button className = "backfromlr" onClick={() => navigate(-1)}>Back</button>
         </div>
     );
 }

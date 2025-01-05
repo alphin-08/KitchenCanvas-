@@ -47,6 +47,7 @@ function RecipeDetails() {
         }
     };
 
+    
     const cleanInstructions = stripHtmlTags(recipe.instructions || "No instructions provided.");
 
     if (!recipe) {

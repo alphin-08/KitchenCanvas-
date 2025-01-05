@@ -1,8 +1,14 @@
 .likedRecipes-container {
     text-align: center;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #C3B091;
     min-height: 100vh;
+}
+.likedRecipes-container h1{
+    font-family: "Irish Grover", serif;
+    color: #5B3817;
+    font-size: 48px;
+    margin: 0;
 }
 
 .likedRecipes-list {
@@ -33,4 +39,30 @@
     height: auto;
     border-radius: 10px;
     margin-bottom: 10px;
+}
+
+.backfromlr{
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #FFFFFF;
+    border: 2px solid #9B6417;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 20px;
+}
+
+.remove-button {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.remove-button:hover {
+    color: darkred;
 }

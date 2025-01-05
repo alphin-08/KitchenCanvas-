@@ -136,6 +136,28 @@ app.get('/api/debug', async (req, res) => {
     }
 });
 
+// Delete a liked recipe
+app.delete('/api/likedRecipes', async (req, res) => {
+    const { userId, recipeId } = req.body;
+
+    try {
+        const [result] = await pool.query(
+            'DELETE FROM liked_recipes WHERE user_id = ? AND recipe_id = ?',
+            [userId, recipeId]
+        );
+
+        if (result.affectedRows > 0) {
+            res.json({ message: 'Recipe removed from liked recipes.' });
+        } else {
+            res.status(404).json({ error: 'Recipe not found in liked recipes.' });
+        }
+    } catch (error) {
+        console.error('Error removing liked recipe:', error.message);
+        res.status(500).json({ error: 'An error occurred while removing the liked recipe.' });
+    }
+});
+
+
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

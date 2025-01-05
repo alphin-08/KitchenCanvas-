@@ -95,19 +95,13 @@
 .bottomContainer-home {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* Always 3 columns */
     gap: 20px;
-    /* Space between grid items */
     padding: 20px;
-    /* Ensure proper padding inside the container */
     width: 100%;
     max-width: calc(3 * 200px + 2 * 20px);
-    /* Adjust to fit 3 columns and 2 gaps */
     margin: 0 auto;
     justify-items: center;
-    /* Center items within each column */
     box-sizing: border-box;
-    /* Ensure padding is included in the total width */
 }
 
 .recipe-card {
@@ -124,7 +118,6 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
     max-width: 200px;
-    /* Ensure consistent card size */
 }
 
 .recipe-card img {
@@ -148,7 +141,6 @@
 }
 
 
-
 @media (max-width: 500px) {
     .mainContainer-login {
         width: 100%;
@@ -170,9 +162,7 @@
     .middleContainer-login input {
         width: 90%;
         height: 35px;
-        /* Reduce height */
         font-size: 14px;
-        /* Reduce font size */
         padding: 5px 10px;
         margin-bottom: 20px;
         border-radius: 5px;
@@ -180,14 +170,12 @@
 
     .middleContainer-login input::placeholder {
         font-size: 12px;
-        /* Adjust placeholder size */
     }
 
     .middleContainer-login button {
         width: 90%;
         height: 35px;
         font-size: 14px;
-        /* Reduce button text size */
         padding: 5px;
         border-radius: 5px;
         margin-bottom: 20px;
@@ -196,22 +184,15 @@
     .bottomContainer-login button {
         width: 90%;
         font-size: 14px;
-        /* Adjust font size for text */
         padding: 10px;
-        /* Add consistent padding */
         border-radius: 5px;
         margin-bottom: 20px;
         display: flex;
         justify-content: center;
-        /* Horizontally center the text */
         align-items: center;
-        /* Vertically center the text */
         background-color: #8A7171;
-        /* Button color */
         color: white;
-        /* Text color */
         border: none;
-        /* Remove border */
     }
 
     .bottomContainer-login button b {

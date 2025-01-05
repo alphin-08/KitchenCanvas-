@@ -1,0 +1,51 @@
+/* General styling for the sign-out page */
+.signOut-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #DAC99B;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+.signOut-container h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.signOut-container p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.signOut-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signOut-button:hover {
+    background-color: #e55347;
+
+}
+
+.backfromso{
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #FFFFFF;
+    border: 2px solid #9B6417;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 20px;
+}

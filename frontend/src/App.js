@@ -8,6 +8,7 @@ import RecipeDetails from './pages/recipeDetails';
 import NotFound from './pages/NotFound';
 import SearchByIngredients from './pages/searchByIngredients'; 
 import LikedRecipes from './pages/likedRecipes';
+import SignOut from './pages/signOut';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/searchByIngredients" element={<SearchByIngredients />} />
         <Route path="/likedRecipes" element={<LikedRecipes />} />
+        <Route path="/signOut" element={<SignOut />}/>
       </Routes>
     </Router>
   );
