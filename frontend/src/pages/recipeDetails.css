@@ -94,19 +94,17 @@
     margin-bottom: 0;
 }
 
-.like-button,
 .show-recipe-button {
-    font-family: 'Georgia', serif;
+    font-family: "Irish Grover", serif;
     font-size: 18px;
     padding: 10px 20px;
-    background-color: #FFFFFF;
+    background-color: transparent;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.like-button:hover,
 .show-recipe-button:hover {
     background-color: #E8D9B9;
     transform: translateY(-3px);
@@ -119,7 +117,7 @@
 }
 
 .back-button {
-    font-family: 'Georgia', serif;
+    font-family: "Irish Grover", serif;
     font-size: 18px;
     padding: 10px 20px;
     background-color: #ffffff;
@@ -132,6 +130,27 @@
 .back-button:hover {
     background-color: #f0d9b5;
     transform: translateY(-3px);
+}
+
+.like-button {
+    font-size: 24px;
+    border: none;
+    /* background: transparent; */
+    cursor: pointer;
+    /* transition: transform 0.3s ease, color 0.3s ease; */
+    color: rgba(255, 0, 0, 0.3);
+    background-color: transparent;
+    /* Transparent red */
+}
+
+.like-button.liked {
+    color: rgba(255, 0, 0, 1);
+    /* Solid red */
+}
+
+.like-button:hover {
+    background-color: #E8D9B9;
+    transform: scale(1.2);
 }
 
 @media (max-width: 768px) {

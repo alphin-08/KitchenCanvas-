@@ -68,6 +68,12 @@
     align-items: center;
 }
 
+.error-message {
+    color: #FF0000;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
 
 @media (max-width: 360px) {
     .mainContainer-login {

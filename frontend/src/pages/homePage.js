@@ -4,13 +4,18 @@ import { useNavigate } from 'react-router-dom';
 
 function Home() {
     const [recipes, setRecipes] = useState([]); // State to store recipes
+    const [searchTerm, setSearchTerm] = useState(''); 
     const navigate = useNavigate();
 
     useEffect(() => {
         // Fetch 12 random recipes from the backend
         const fetchRecipes = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/recipes'); // Backend endpoint
+                const endpoint = searchTerm
+                    ? `http://localhost:5000/api/searchRecipes?query=${searchTerm}`
+                    : `http://localhost:5000/api/recipes`;
+                
+                const response = await fetch(endpoint); 
                 const data = await response.json();
                 setRecipes(data.recipes || []);
             } catch (error) {
@@ -18,7 +23,7 @@ function Home() {
             }
         };
         fetchRecipes();
-    }, []);
+    }, [searchTerm]);
 
 
     const handleCardClick = (recipe) => {
@@ -37,9 +42,14 @@ function Home() {
                 <button>Upload New</button>
                 <button onClick={() => navigate('/signOut')}>Sign Out</button>
             </div>
+
+            
             <div className="middleContainer-home">
-                <input type="text" placeholder="Search Recipes" />
+                <input type="text" placeholder="Search Recipes"  value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)} />
             </div>
+
+
             <div className="bottomContainer-home">
                 {recipes.map((recipe) => (
                     <div

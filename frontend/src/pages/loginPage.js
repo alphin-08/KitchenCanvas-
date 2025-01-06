@@ -5,9 +5,16 @@ import React, { useState } from 'react';
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const handleLogin = async () => {
+
+        if (!username || !password) {
+            alert('Please enter both username and password.');
+            return;
+        }
+        
         try {
             const response = await fetch('http://localhost:5000/api/login', {
                 method: 'POST',
@@ -17,19 +24,29 @@ function Login() {
 
             const data = await response.json();
             if (response.ok) {
+                setError('');
                 alert('Login successful!');
-                // Save user info (if needed)
-                console.log('Login successful. User ID:', data.user.id); // Debugging
                 localStorage.setItem('userId', data.user.id);
                 localStorage.setItem('username', data.user.username);
+                localStorage.setItem('isGuest', 'false');
                 navigate('/homePage');
             } else {
-                alert(data.error || 'Login failed. Please try again.');
+                setError(data.error || 'Login failed. Please try again.');
+                // alert(data.error || 'Login failed. Please try again.');
             }
         } catch (error) {
             console.error('Error logging in:', error);
-            alert('An error occurred. Please try again.');
+            // alert('An error occurred. Please try again.');
+            setError('An error occurred. Please try again.');
         }
+    };
+
+    const handleGuestLogin = () => {
+        // Set guest-specific data in localStorage
+        localStorage.setItem('isGuest', 'true'); // Mark the user as a guest
+        localStorage.removeItem('userId'); // Remove userId if it exists
+        localStorage.removeItem('username'); // Remove username if it exists
+        navigate('/homePage');
     };
 
 
@@ -44,6 +61,7 @@ function Login() {
                 <input type='text' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} />
                 <input type='password' placeholder='Password'  value={password} onChange={(e) => setPassword(e.target.value)} />
                 <button onClick={handleLogin}> <b>Login</b></button>
+                {error && <p className="error-message">{error}</p>}
             </div>
 
 
@@ -52,7 +70,7 @@ function Login() {
                     <button><b>Create an Account</b></button>
                 </Link>
                 <Link to = '/homePage'>
-                    <button><b>Continue as Guest</b></button>
+                    <button onClick={handleGuestLogin}><b>Continue as Guest</b></button>
                 </Link>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './recipeDetails.css';
 
@@ -7,6 +7,28 @@ function RecipeDetails() {
     const navigate = useNavigate();
     const { recipe } = location.state;
     const [showDetails, setShowDetails] = useState(false);
+    const [liked, setLiked] = useState(false);
+
+
+    useEffect(() => {
+        const userId = localStorage.getItem('userId');
+        const checkIfLiked = async () => {
+            if (userId) {
+                try {
+                    const response = await fetch(
+                        `http://localhost:5000/api/likedRecipes?userId=${userId}`
+                    );
+                    const data = await response.json();
+                    const isLiked = data.some((likedRecipe) => likedRecipe.recipe_id === recipe.id);
+                    setLiked(isLiked);
+                } catch (error) {
+                    console.error('Error checking liked recipes:', error);
+                }
+            }
+        };
+        checkIfLiked();
+    }, [recipe.id]);
+
 
     const handleShowRecipe = () => {
         setShowDetails(!showDetails);
@@ -27,8 +49,15 @@ function RecipeDetails() {
         }
         
         try {
-            const response = await fetch('http://localhost:5000/api/likedRecipes', {
-                method: 'POST',
+            // const response = await fetch('http://localhost:5000/api/likedRecipes', {
+            //     method: 'POST',
+            const url = liked
+                ? 'http://localhost:5000/api/likedRecipes'
+                : 'http://localhost:5000/api/likedRecipes';
+            const method = liked ? 'DELETE' : 'POST';
+
+            const response = await fetch(url, {
+                method,
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -40,11 +69,13 @@ function RecipeDetails() {
                 }),
             });
 
-            const data = await response.json();
+            // const data = await response.json();
 
             if (response.ok) {
-                alert('Recipe liked successfully!');
+                setLiked(!liked);
+                // alert('Recipe liked successfully!');
             } else {
+                const data = await response.json();
                 alert(`Error: ${data.error}`);
             }
         } catch (error) {
@@ -67,7 +98,8 @@ function RecipeDetails() {
                 <h2>{recipe.title}</h2>
                 <img src={recipe.image} alt={recipe.title} />
                 <div className="recipeDetails-actions">
-                    <button className="like-button"  onClick={handleLikeRecipe}>❤️ Like</button>
+                    <button className={`like-button ${liked ? 'liked' : ''}`}
+                    onClick={handleLikeRecipe}>❤️</button>
                     <button className="show-recipe-button" onClick={handleShowRecipe}> {showDetails ? 'Hide Recipe' : 'Show Recipe'}</button>
                 </div>
             </div>

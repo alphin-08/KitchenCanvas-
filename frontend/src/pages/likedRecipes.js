@@ -1,41 +1,49 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './likedRecipes.css';
 
 function LikedRecipes() {
     const [likedRecipes, setLikedRecipes] = useState([]);
     const navigate = useNavigate();
-
-    const handleNavigate = useCallback(() => {
-        const userId = localStorage.getItem('userId');
-
-        if (!userId) {
-            alert('You need to log in to view liked recipes.');
-            navigate('/login'); // Redirect to login if userId is missing
-        }
-    }, [navigate]);
+    const isGuest = localStorage.getItem('isGuest') === 'true'; 
+    const userId = localStorage.getItem('userId'); 
 
     useEffect(() => {
-        const fetchLikedRecipes = async () => {
-        
-            const userId = localStorage.getItem('userId');
+        if (isGuest) {
+            // Load guest liked recipes from localStorage
+            const guestRecipes = JSON.parse(localStorage.getItem('guestLikedRecipes')) || [];
+            setLikedRecipes(guestRecipes);
+        } else {
+            // Fetch liked recipes from the backend for logged-in users
+            const fetchLikedRecipes = async () => {
+                try {
+                    const response = await fetch(`http://localhost:5000/api/likedRecipes?userId=${userId}`);
+                    const data = await response.json();
+                    setLikedRecipes(data || []);
+                } catch (error) {
+                    console.error('Error fetching liked recipes:', error);
+                }
+            };
+            fetchLikedRecipes();
+        }
+    }, [isGuest, userId]);
 
-            if (!userId) {
-                handleNavigate();
-                return;
+    const handleRecipeClick = async (recipeId) => {
+        try {
+            const response = await fetch(`http://localhost:5000/api/recipeDetails?id=${recipeId}`);
+            const data = await response.json();
+
+            if (response.ok) {
+                navigate('/recipeDetails', { state: { recipe: data } });
+            } else {
+                alert('Failed to fetch recipe details.');
             }
+        } catch (error) {
+            console.error('Error fetching recipe details:', error);
+        }
+    };
 
-            try {
-                const response = await fetch(`http://localhost:5000/api/likedRecipes?userId=${userId}`); // Need to replace 1 with the logged-in userId
-                const data = await response.json();
-                setLikedRecipes(data || []);
-            } catch (error) {
-                console.error('Error fetching liked recipes:', error);
-            }
-        };
-        fetchLikedRecipes();
-    }, [handleNavigate]);
-
+    
     const handleRemoveLikedRecipe = async (recipeId) => {
 
         const userId = localStorage.getItem('userId');
@@ -72,7 +80,7 @@ function LikedRecipes() {
             <div className="likedRecipes-list">
                 {likedRecipes.length > 0 ? (
                     likedRecipes.map((recipe) => (
-                        <div key={recipe.id} className="recipe-card" onClick={() => navigate('/recipeDetails', { state: { recipe } })}>
+                        <div key={recipe.id} className="recipe-card"   onClick={() => handleRecipeClick(recipe.recipe_id)}>
                             <img src={recipe.recipe_image} alt={recipe.recipe_title} />
                             <p>{recipe.recipe_title}</p>
                             <button className="remove-button" onClick={(e) => { e.stopPropagation(); handleRemoveLikedRecipe(recipe.recipe_id); }}>X</button>

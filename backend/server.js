@@ -18,6 +18,16 @@ app.post('/api/register', async (req, res) => {
     const { username, password } = req.body;
 
     try {
+
+        const [existingUser] = await pool.query(
+            'SELECT * FROM users WHERE username = ?',
+            [username]
+        );
+
+        if (existingUser.length > 0) {
+            return res.status(400).json({ error: 'Username already exists.' });
+        }
+
         const [result] = await pool.query(
             'INSERT INTO users (username, password) VALUES (?, ?)',
             [username, password]
@@ -162,6 +172,21 @@ app.delete('/api/likedRecipes', async (req, res) => {
     } catch (error) {
         console.error('Error removing liked recipe:', error.message);
         res.status(500).json({ error: 'An error occurred while removing the liked recipe.' });
+    }
+});
+
+app.get('/api/searchRecipes', async (req, res) => {
+    const { query } = req.query;
+
+    try {
+        const response = await fetch(
+            `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=12&apiKey=${process.env.SPOONACULAR_API_KEY}`
+        );
+        const data = await response.json();
+        res.json({ recipes: data.results }); // Return the recipes from the Spoonacular API
+    } catch (error) {
+        console.error('Error searching recipes:', error);
+        res.status(500).json({ error: 'Failed to search recipes' });
     }
 });
 

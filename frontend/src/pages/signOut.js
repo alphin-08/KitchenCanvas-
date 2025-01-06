@@ -5,6 +5,7 @@ import './signOut.css'; // Import the CSS file
 function SignOut() {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
+    const [isGuest, setIsGuest] = useState(false);
 
     useEffect(() => {
         // Simulate fetching username from backend or state
@@ -12,7 +13,9 @@ function SignOut() {
             try {
                 // Replace with your actual API or localStorage logic
                 const storedUsername = localStorage.getItem('username') || 'Guest'; 
+                const guestStatus = localStorage.getItem('isGuest') === 'true';
                 setUsername(storedUsername);
+                setIsGuest(guestStatus);
             } catch (error) {
                 console.error('Error fetching username:', error);
             }
@@ -23,6 +26,14 @@ function SignOut() {
 
     const handleSignOut = () => {
         localStorage.removeItem('username'); 
+        localStorage.removeItem('userId');
+        localStorage.removeItem('isGuest');
+
+        if (isGuest) {
+            // Clear guest-specific data
+            localStorage.removeItem('guestLikedRecipes');
+        }
+        
         console.log('User signed out');
         navigate('/');
     };
