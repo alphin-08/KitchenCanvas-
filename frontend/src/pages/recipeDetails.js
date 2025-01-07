@@ -9,26 +9,38 @@ function RecipeDetails() {
     const [showDetails, setShowDetails] = useState(false);
     const [liked, setLiked] = useState(false);
 
-
     useEffect(() => {
-        const userId = localStorage.getItem('userId');
-        const checkIfLiked = async () => {
-            if (userId) {
-                try {
-                    const response = await fetch(
-                        `http://localhost:5000/api/likedRecipes?userId=${userId}`
-                    );
-                    const data = await response.json();
-                    const isLiked = data.some((likedRecipe) => likedRecipe.recipe_id === recipe.id);
-                    setLiked(isLiked);
-                } catch (error) {
-                    console.error('Error checking liked recipes:', error);
+        const isGuest = localStorage.getItem('isGuest') === 'true';
+        if (isGuest) {
+            // Check if recipe is liked by a guest
+            const guestLikedRecipes =
+                JSON.parse(localStorage.getItem('guestLikedRecipes')) || [];
+            const isLiked = guestLikedRecipes.some(
+                (r) => r.recipe_id === recipe.id
+            );
+            setLiked(isLiked);
+        } else {
+            // Check if recipe is liked by a logged-in user
+            const userId = localStorage.getItem('userId');
+            const checkIfLiked = async () => {
+                if (userId) {
+                    try {
+                        const response = await fetch(
+                            `http://localhost:5000/api/likedRecipes?userId=${userId}`
+                        );
+                        const data = await response.json();
+                        const isLiked = data.some(
+                            (likedRecipe) => likedRecipe.recipe_id === recipe.id
+                        );
+                        setLiked(isLiked);
+                    } catch (error) {
+                        console.error('Error checking liked recipes:', error);
+                    }
                 }
-            }
-        };
-        checkIfLiked();
+            };
+            checkIfLiked();
+        }
     }, [recipe.id]);
-
 
     const handleShowRecipe = () => {
         setShowDetails(!showDetails);
@@ -38,25 +50,53 @@ function RecipeDetails() {
         navigate(-1);
     };
 
-    const handleLikeRecipe = async () => {
-        // Need to replace this const with actual logged-in userId
-        const userId = localStorage.getItem('userId');
+    const handleLikeRecipe = () => {
+        const isGuest = localStorage.getItem('isGuest') === 'true';
+        const guestLikedRecipes =
+            JSON.parse(localStorage.getItem('guestLikedRecipes')) || [];
 
-        if (!userId) {
-            alert('You need to log in to like recipes.');
-            navigate('/login'); // Redirect to login if no user is logged in
-            return;
-        }
-        
-        try {
-            // const response = await fetch('http://localhost:5000/api/likedRecipes', {
-            //     method: 'POST',
+        if (isGuest) {
+            // Handle likes for guest users
+            if (liked) {
+                // Unlike recipe
+                const updatedRecipes = guestLikedRecipes.filter(
+                    (r) => r.recipe_id !== recipe.id
+                );
+                localStorage.setItem(
+                    'guestLikedRecipes',
+                    JSON.stringify(updatedRecipes)
+                );
+            } else {
+                // Like recipe
+                const updatedRecipes = [
+                    ...guestLikedRecipes,
+                    {
+                        recipe_id: recipe.id,
+                        recipe_title: recipe.title,
+                        recipe_image: recipe.image,
+                    },
+                ];
+                localStorage.setItem(
+                    'guestLikedRecipes',
+                    JSON.stringify(updatedRecipes)
+                );
+            }
+            setLiked(!liked);
+        } else {
+            // Handle likes for logged-in users
+            const userId = localStorage.getItem('userId');
+            if (!userId) {
+                alert('You need to log in to like recipes.');
+                navigate('/login');
+                return;
+            }
+
             const url = liked
                 ? 'http://localhost:5000/api/likedRecipes'
                 : 'http://localhost:5000/api/likedRecipes';
             const method = liked ? 'DELETE' : 'POST';
 
-            const response = await fetch(url, {
+            fetch(url, {
                 method,
                 headers: {
                     'Content-Type': 'application/json',
@@ -67,24 +107,23 @@ function RecipeDetails() {
                     recipeTitle: recipe.title,
                     recipeImage: recipe.image,
                 }),
-            });
-
-            // const data = await response.json();
-
-            if (response.ok) {
-                setLiked(!liked);
-                // alert('Recipe liked successfully!');
-            } else {
-                const data = await response.json();
-                alert(`Error: ${data.error}`);
-            }
-        } catch (error) {
-            console.error('Error liking recipe:', error);
-            alert('An error occurred while liking the recipe.');
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        setLiked(!liked);
+                    } else {
+                        return response.json().then((data) => {
+                            alert(`Error: ${data.error}`);
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error liking recipe:', error);
+                    alert('An error occurred while liking the recipe.');
+                });
         }
     };
 
-    
     const cleanInstructions = stripHtmlTags(recipe.instructions || "No instructions provided.");
 
     if (!recipe) {
@@ -98,9 +137,15 @@ function RecipeDetails() {
                 <h2>{recipe.title}</h2>
                 <img src={recipe.image} alt={recipe.title} />
                 <div className="recipeDetails-actions">
-                    <button className={`like-button ${liked ? 'liked' : ''}`}
-                    onClick={handleLikeRecipe}>❤️</button>
-                    <button className="show-recipe-button" onClick={handleShowRecipe}> {showDetails ? 'Hide Recipe' : 'Show Recipe'}</button>
+                    <button
+                        className={`like-button ${liked ? 'liked' : ''}`}
+                        onClick={handleLikeRecipe}
+                    >
+                        ❤️
+                    </button>
+                    <button className="show-recipe-button" onClick={handleShowRecipe}>
+                        {showDetails ? 'Hide Recipe' : 'Show Recipe'}
+                    </button>
                 </div>
             </div>
             {showDetails && (
@@ -112,10 +157,9 @@ function RecipeDetails() {
                         ))}
                     </ul>
                     <h2>Instructions</h2>
-                    <p>{cleanInstructions}</p> 
+                    <p>{cleanInstructions}</p>
                 </div>
             )}
-
             <div className="back-button-container">
                 <button className="back-button" onClick={handleBack}>
                     Back
@@ -128,7 +172,8 @@ function RecipeDetails() {
 function stripHtmlTags(html) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
-    return doc.body.textContent || "";
+    return doc.body.textContent || '';
 }
 
 export default RecipeDetails;
+

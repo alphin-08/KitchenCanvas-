@@ -78,6 +78,21 @@
     transform: translateY(-3px);
 }
 
+.deleteUploadedBt {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.deleteUploadedBt:hover {
+    color: darkred;
+    transform: scale(1.1);
+}
+
 
 /* Responsive design for smaller screens */
 @media (max-width: 360px) {

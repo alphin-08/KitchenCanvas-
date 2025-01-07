@@ -32,6 +32,7 @@ function SignOut() {
         if (isGuest) {
             // Clear guest-specific data
             localStorage.removeItem('guestLikedRecipes');
+            localStorage.removeItem('guestUploadedRecipes'); 
         }
         
         console.log('User signed out');

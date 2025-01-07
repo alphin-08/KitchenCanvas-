@@ -193,18 +193,30 @@ app.get('/api/searchRecipes', async (req, res) => {
 app.post('/api/uploadRecipe', async (req, res) => {
     const { userId, recipeName, ingredients, steps } = req.body;
 
+    // Validate required fields
     if (!userId || !recipeName) {
         return res.status(400).json({ error: 'User ID and Recipe Name are required.' });
     }
 
     try {
+        // Insert the recipe into the database
         const [result] = await pool.query(
             'INSERT INTO recipes (user_id, name, ingredients, steps) VALUES (?, ?, ?, ?)',
-            [userId, recipeName, ingredients || '', steps || '']
+            [userId, recipeName.trim(), ingredients?.trim() || '', steps?.trim() || '']
         );
-        res.json({ message: 'Recipe uploaded successfully!', recipeId: result.insertId });
+
+        res.status(201).json({ 
+            message: 'Recipe uploaded successfully!', 
+            recipeId: result.insertId 
+        });
     } catch (error) {
         console.error('Error uploading recipe:', error);
+
+        // Handle specific MySQL errors if needed
+        if (error.code === 'ER_NO_REFERENCED_ROW_2') {
+            return res.status(400).json({ error: 'Invalid user ID. User does not exist.' });
+        }
+
         res.status(500).json({ error: 'Failed to upload recipe.' });
     }
 });
@@ -212,22 +224,50 @@ app.post('/api/uploadRecipe', async (req, res) => {
 app.get('/api/uploadedRecipes', async (req, res) => {
     const { userId } = req.query;
 
+    // Validate required fields
     if (!userId) {
         return res.status(400).json({ error: 'User ID is required.' });
     }
 
     try {
+        // Fetch the user's uploaded recipes from the database
         const [recipes] = await pool.query(
             'SELECT id, name, ingredients, steps FROM recipes WHERE user_id = ?',
             [userId]
         );
-        res.json(recipes);
+
+        // If no recipes found, send an empty array
+        if (recipes.length === 0) {
+            return res.status(200).json({ message: 'No recipes found.', recipes: [] });
+        }
+
+        res.status(200).json(recipes);
     } catch (error) {
         console.error('Error fetching uploaded recipes:', error);
         res.status(500).json({ error: 'Failed to fetch uploaded recipes.' });
     }
 });
 
+app.delete('/api/deleteRecipe', async (req, res) => {
+    const { recipeId, userId } = req.body;
+
+    if (!recipeId || !userId) {
+        return res.status(400).json({ error: 'Recipe ID and User ID are required.' });
+    }
+
+    try {
+        const [result] = await pool.query('DELETE FROM recipes WHERE id = ? AND user_id = ?', [recipeId, userId]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: 'Recipe not found or does not belong to the user.' });
+        }
+
+        res.json({ message: 'Recipe deleted successfully.' });
+    } catch (error) {
+        console.error('Error deleting recipe:', error);
+        res.status(500).json({ error: 'An error occurred while deleting the recipe.' });
+    }
+});
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

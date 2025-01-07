@@ -7,41 +7,62 @@ function UploadNewRecipe() {
     const [ingredients, setIngredients] = useState('');
     const [steps, setSteps] = useState('');
     const navigate = useNavigate();
+    const isGuest = localStorage.getItem('isGuest') === 'true';
 
     const handleUploadRecipe = async () => {
-        // Prepare the data to be sent to the backend
-        const userId = localStorage.getItem('userId');
-        if (!userId) {
-            alert('You need to be logged in to upload a recipe.');
-            navigate('/login');
+        if (!recipeName) {
+            alert('Recipe Name is required.');
             return;
         }
 
-        try {
-            const response = await fetch('http://localhost:5000/api/uploadRecipe', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    userId,
-                    recipeName,
-                    ingredients,
-                    steps,
-                }),
+        if (isGuest) {
+            // Store recipes in localStorage for guests
+            const guestUploadedRecipes = JSON.parse(localStorage.getItem('guestUploadedRecipes')) || [];
+            guestUploadedRecipes.push({
+                id: Date.now(), // Temporary ID for guest recipes
+                name: recipeName,
+                ingredients,
+                steps,
             });
-
-            const data = await response.json();
-            if (response.ok) {
-                alert('Recipe uploaded successfully!');
-                setRecipeName('');
-                setIngredients('');
-                setSteps('');
-            } else {
-                alert(data.error || 'Failed to upload recipe. Please try again.');
+            localStorage.setItem('guestUploadedRecipes', JSON.stringify(guestUploadedRecipes));
+            alert('Recipe uploaded successfully!');
+        } else {
+            // Store recipes in backend for logged-in users
+            const userId = localStorage.getItem('userId');
+            if (!userId) {
+                alert('You need to be logged in to upload a recipe.');
+                navigate('/login');
+                return;
             }
-        } catch (error) {
-            console.error('Error uploading recipe:', error);
-            alert('An unexpected error occurred. Please try again.');
+
+            try {
+                const response = await fetch('http://localhost:5000/api/uploadRecipe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        userId,
+                        recipeName,
+                        ingredients,
+                        steps,
+                    }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert('Recipe uploaded successfully!');
+                } else {
+                    alert(data.error || 'Failed to upload recipe. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error uploading recipe:', error);
+                alert('An unexpected error occurred. Please try again.');
+            }
         }
+
+        // Reset form fields
+        setRecipeName('');
+        setIngredients('');
+        setSteps('');
     };
 
     return (
@@ -73,12 +94,9 @@ function UploadNewRecipe() {
                         placeholder="Enter steps to prepare the recipe"
                     />
                 </label>
-
-                <button className = "uploadRecipeBt" onClick={handleUploadRecipe}>Upload Recipe</button>
-                <button className = "uploadedRecipeBt" onClick={() => navigate('/uploadedRecipes')}>View Uploaded Recipes</button>
-
-                <button className = "backfromUR" onClick={() => navigate(-1)}>Back</button>
-
+                <button className="uploadRecipeBt" onClick={handleUploadRecipe}>Upload Recipe</button>
+                <button className="uploadedRecipeBt" onClick={() => navigate('/uploadedRecipes')}>View Uploaded Recipes</button>
+                <button className="backfromUR" onClick={() => navigate(-1)}>Back</button>
             </div>
         </div>
     );

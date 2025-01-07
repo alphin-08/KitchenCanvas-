@@ -9,7 +9,27 @@ function SearchByIngredients() {
     const [isFocused, setIsFocused] = useState(false);
     const navigate = useNavigate();
 
-    const suggestions = ['Chicken', 'Beef', 'Onion', 'Garlic', 'Tomato', 'Cheese']; // Example suggestions
+    const suggestions = [
+    'Chicken', 'Beef', 'Pork', 'Lamb', 'Fish', 'Shrimp', 'Crab', 'Lobster', 
+    'Eggs', 'Milk', 'Butter', 'Cream', 'Yogurt', 'Cheese', 'Ricotta', 'Mozzarella',
+    'Parmesan', 'Blue Cheese', 'Cheddar', 'Feta', 'Goat Cheese', 'Cottage Cheese',
+    'Carrot', 'Onion', 'Garlic', 'Celery', 'Tomato', 'Potato', 'Sweet Potato', 
+    'Bell Pepper', 'Cucumber', 'Zucchini', 'Eggplant', 'Spinach', 'Kale', 'Lettuce',
+    'Mushroom', 'Peas', 'Corn', 'Green Beans', 'Broccoli', 'Cauliflower', 'Cabbage',
+    'Beets', 'Radish', 'Leek', 'Scallion', 'Parsnip', 'Turnip', 'Asparagus',
+    'Avocado', 'Apple', 'Banana', 'Orange', 'Lemon', 'Lime', 'Strawberry',
+    'Blueberry', 'Raspberry', 'Blackberry', 'Pineapple', 'Mango', 'Papaya',
+    'Peach', 'Plum', 'Grapes', 'Watermelon', 'Cantaloupe', 'Honeydew', 
+    'Nuts', 'Almond', 'Cashew', 'Walnut', 'Pistachio', 'Hazelnut', 
+    'Flour', 'Sugar', 'Salt', 'Pepper', 'Paprika', 'Cinnamon', 'Nutmeg', 'Vanilla',
+    'Honey', 'Maple Syrup', 'Baking Powder', 'Baking Soda', 'Cocoa Powder',
+    'Chili Powder', 'Coriander', 'Cumin', 'Turmeric', 'Black Pepper', 'Ginger', 'Oregano',
+    'Thyme', 'Rosemary', 'Basil', 'Parsley', 'Cilantro', 'Mint', 'Bay Leaf',
+    'Soy Sauce', 'Vinegar', 'Olive Oil', 'Vegetable Oil', 'Sesame Oil', 
+    'Coconut Milk', 'Tofu', 'Tempeh', 'Lentils', 'Chickpeas', 'Kidney Beans',
+    'Black Beans', 'White Beans', 'Rice', 'Quinoa', 'Couscous', 'Pasta', 'Noodles',
+    'Bread', 'Tortilla', 'Pita', 'Crackers', 'Oats', 'Granola'
+];
 
     const filteredSuggestions = suggestions.filter((item) =>
         item.toLowerCase().startsWith(ingredient.toLowerCase())
