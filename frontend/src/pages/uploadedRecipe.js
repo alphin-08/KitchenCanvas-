@@ -73,7 +73,8 @@ function UploadedRecipes() {
 
     return (
         <div className="uploadedRecipes-container">
-            <h1>Your Uploaded Recipes</h1>
+            <h1>Kitchen Canvas</h1>
+            <h2>Your Uploaded Recipes</h2>
             {uploadedRecipes.length > 0 ? (
                 <div className="recipe-list3">
                     {uploadedRecipes.map((recipe) => (

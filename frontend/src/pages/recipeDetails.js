@@ -135,7 +135,7 @@ function RecipeDetails() {
             <h1>Kitchen Canvas</h1>
             <div className="recipeDetails-content">
                 <h2>{recipe.title}</h2>
-                <img src={recipe.image} alt={recipe.title} />
+                <img src={recipe.image || 'https://via.placeholder.com/600x400?text=No+Image'} alt={recipe.title || 'No Image Available'} className = "recipe-image22"/>
                 <div className="recipeDetails-actions">
                     <button
                         className={`like-button ${liked ? 'liked' : ''}`}
@@ -160,8 +160,8 @@ function RecipeDetails() {
                     <p>{cleanInstructions}</p>
                 </div>
             )}
-            <div className="back-button-container">
-                <button className="back-button" onClick={handleBack}>
+            <div className="backrdBtContainer">
+                <button className="backrdBt" onClick={handleBack}>
                     Back
                 </button>
             </div>

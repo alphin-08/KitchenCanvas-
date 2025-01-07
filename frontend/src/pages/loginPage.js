@@ -5,13 +5,13 @@ import React, { useState } from 'react';
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
     const handleLogin = async () => {
 
         if (!username || !password) {
-            alert('Please enter both username and password.');
+            setMessage('Please enter both username and password.');
             return;
         }
         
@@ -24,20 +24,18 @@ function Login() {
 
             const data = await response.json();
             if (response.ok) {
-                setError('');
-                alert('Login successful!');
+                setMessage('Login successful!');
                 localStorage.setItem('userId', data.user.id);
                 localStorage.setItem('username', data.user.username);
                 localStorage.setItem('isGuest', 'false');
-                navigate('/homePage');
+                setTimeout(() => navigate('/homePage'), 2000);
             } else {
-                setError(data.error || 'Login failed. Please try again.');
-                // alert(data.error || 'Login failed. Please try again.');
+                setMessage(data.error || 'Login failed. Please try again.');
             }
         } catch (error) {
             console.error('Error logging in:', error);
-            // alert('An error occurred. Please try again.');
-            setError('An error occurred. Please try again.');
+            
+            setMessage('An error occurred. Please try again.');
         }
     };
 
@@ -61,7 +59,10 @@ function Login() {
                 <input type='text' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} />
                 <input type='password' placeholder='Password'  value={password} onChange={(e) => setPassword(e.target.value)} />
                 <button onClick={handleLogin}> <b>Login</b></button>
-                {error && <p className="error-message">{error}</p>}
+                {message && (
+                    <p className={message === 'Login successful!' ? "success-message" : "error-message"}>{message}
+                    </p>
+                )}
             </div>
 
 

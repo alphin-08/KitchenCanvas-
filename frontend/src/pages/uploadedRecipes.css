@@ -10,9 +10,10 @@
 
 /* Header styles */
 .uploadedRecipes-container h1 {
-    font-family: 'Georgia', serif;
+    font-family: "Irish Grover", serif;
+    font-size: 48px;
     color: #5B3817;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 /* Recipe list container */

@@ -67,7 +67,8 @@ function UploadNewRecipe() {
 
     return (
         <div className="uploadNewRecipe-container">
-            <h1>Upload New Recipe</h1>
+            <h1>Kitchen Canvas</h1>
+            <h2>Upload New Recipe</h2>
             <div className="form-container">
                 <label>
                     Recipe Name:

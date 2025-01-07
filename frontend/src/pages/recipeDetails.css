@@ -1,3 +1,14 @@
+.recipe-image22 {
+    width: 100%;
+        /* Ensure it scales to fit the card */
+        max-width: 600px;
+        /* Prevent it from being too large */
+        height: auto;
+        /* Maintain the aspect ratio */
+        margin: 0 auto;
+        border-radius: 8px;
+        background-color: #ddd;
+}
 .recipeDetails-container {
     display: flex;
     flex-direction: column;
@@ -7,7 +18,8 @@
     min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
-    overflow-y: auto;
+    width: 100%;
+    max-width: 100%;
 }
 
 .recipe-details {
@@ -28,11 +40,25 @@
 }
 
 .recipeDetails-container h1{
-    color:#9B6417 ;
+    color: #5B3817;
 }
 
 .recipeDetails-content {
-    margin-top: 20px;
+    width: 80%;
+        /* Occupies 80% of the container's width */
+        max-width: 800px;
+        /* Add a maximum width for large screens */
+        margin: 20px auto;
+        /* Center the card */
+        background-color: #ffffff;
+        /* Optional: Add a white background for contrast */
+        border-radius: 8px;
+        /* Rounded corners */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        /* Subtle shadow */
+        padding: 20px;
+        /* Add padding inside the card */
+        text-align: center;
 }
 
 .recipeDetails-content h2 {
@@ -110,13 +136,13 @@
     transform: translateY(-3px);
 }
 
-.back-button-container {
+.backrdBtContainer {
     display: flex;
     justify-content: center;
     margin-top: 40px;
 }
 
-.back-button {
+.backrdBt {
     font-family: "Irish Grover", serif;
     font-size: 18px;
     padding: 10px 20px;
@@ -127,7 +153,7 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.back-button:hover {
+.backrdBt:hover {
     background-color: #f0d9b5;
     transform: translateY(-3px);
 }
@@ -135,17 +161,13 @@
 .like-button {
     font-size: 24px;
     border: none;
-    /* background: transparent; */
     cursor: pointer;
-    /* transition: transform 0.3s ease, color 0.3s ease; */
     color: rgba(255, 0, 0, 0.3);
     background-color: transparent;
-    /* Transparent red */
 }
 
 .like-button.liked {
     color: rgba(255, 0, 0, 1);
-    /* Solid red */
 }
 
 .like-button:hover {
@@ -156,31 +178,25 @@
 @media (max-width: 768px) {
     .recipeDetails-content img {
         max-width: 100%;
-        /* Adjust image size */
         height: auto;
-        /* Maintain aspect ratio */
     }
 
     .recipe-details ul {
         padding-left: 10px;
-        /* Reduce padding for smaller screens */
     }
 
     .recipe-details h2 {
         font-size: 18px;
-        /* Reduce header size */
     }
 
     .recipe-details p {
         font-size: 14px;
-        /* Reduce paragraph font size */
     }
 }
 
 @media (max-width: 500px) {
     .recipeDetails-container {
         padding: 10px;
-        /* Reduce padding */
     }
 
     .recipe-details h2 {

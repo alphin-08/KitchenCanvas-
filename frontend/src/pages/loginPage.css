@@ -68,9 +68,11 @@
     align-items: center;
 }
 
-.error-message {
-    color: #FF0000;
-    font-size: 14px;
+.error-message,
+.success-message {
+    color: white;
+    font-size: 16px;
+    text-align: center;
     margin-top: 10px;
 }
 

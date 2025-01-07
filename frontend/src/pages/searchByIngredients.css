@@ -11,14 +11,18 @@
 
 /* Header styles */
 .searchByIngredients-container h1 {
-    font-family: 'Georgia', serif;
+    font-family: "Irish Grover", serif;
+    font-size: 48px;
     color: #5B3817;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
+.searchByIngredients-container h2{
+    margin-bottom: 50px;
+}
 /* Go Back button styles */
-.back-button {
-    font-family: 'Georgia', serif;
+.backsnBT {
+    font-family: "Irish Grover", serif;
     font-size: 16px;
     padding: 10px 20px;
     background-color: #FFFFFF;
@@ -29,7 +33,7 @@
     margin-bottom: 20px;
 }
 
-.back-button:hover {
+.backsnBT:hover {
     background-color: #E8D9B9;
     transform: translateY(-3px);
 }

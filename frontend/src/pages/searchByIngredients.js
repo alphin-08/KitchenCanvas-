@@ -78,8 +78,9 @@ function SearchByIngredients() {
 
     return (
         <div className="searchByIngredients-container">
-            <h1>Search Recipes by Ingredients</h1>
-            <button className="back-button" onClick={() => navigate(-1)}>Go Back</button>
+            <h1>Kitchen Canvas</h1>
+            <h2>Search Recipes by Ingredients</h2>
+            <button className="backsnBT" onClick={() => navigate(-1)}>Go Back</button>
             <div className="search-input">
                 <input
                     type="text"
