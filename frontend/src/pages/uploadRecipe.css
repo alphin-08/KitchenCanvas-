@@ -1,0 +1,108 @@
+.uploadNewRecipe-container {
+    text-align: center;
+    background-color: #C3B091;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header styles */
+.uploadNewRecipe-container h1 {
+    font-family: 'Georgia', serif;
+    color: #5B3817;
+    margin-bottom: 20px;
+}
+
+/* Form styles */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Input and textarea styles */
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #9B6417;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: 'Georgia', serif;
+}
+
+/* Placeholder text styling */
+input::placeholder,
+textarea::placeholder {
+    color: #8A7171;
+    font-style: italic;
+}
+
+/* Button styles */
+.uploadRecipeBt, .uploadedRecipeBt {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #9B6417;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.uploadRecipeBt:hover, .uploadedRecipeBt:hover {
+    background-color: #5B3817;
+    transform: translateY(-3px);
+}
+.backfromUR {
+    font-family: "Irish Grover", serif;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #FFFFFF;
+    border: 2px solid #9B6417;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 20px;
+}
+
+.backfromUR:hover {
+    background-color: #E8D9B9;
+    transform: translateY(-3px);
+}
+
+
+
+/* Responsive design for smaller screens */
+@media (max-width: 360px) {
+    .uploadNewRecipe-container {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .uploadNewRecipe-container h1 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        font-size: 14px;
+        padding: 8px;
+        border-radius: 6px;
+    }
+
+    .backfromUR {
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 6px;
+    }
+}

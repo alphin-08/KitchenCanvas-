@@ -1,0 +1,110 @@
+.uploadedRecipes-container {
+    text-align: center;
+    background-color: #C3B091;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header styles */
+.uploadedRecipes-container h1 {
+    font-family: 'Georgia', serif;
+    color: #5B3817;
+    margin-bottom: 20px;
+}
+
+/* Recipe list container */
+.recipe-list3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Recipe card */
+.recipe-card3 {
+    background-color: #FFFFFF;
+    border: 2px solid #9B6417;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recipe-card3:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Recipe card header */
+.recipe-card3 h2 {
+    font-family: 'Georgia', serif;
+    color: #5B3817;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Recipe card content */
+.recipe-card3 p {
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    color: #5B3817;
+    margin-bottom: 10px;
+    text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.backfromUploadedR{
+    font-family: "Irish Grover", serif;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #FFFFFF;
+    border: 2px solid #9B6417;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 20px;
+}
+
+.backfromUploadedR:hover{
+    background-color: #E8D9B9;
+    transform: translateY(-3px);
+}
+
+
+/* Responsive design for smaller screens */
+@media (max-width: 360px) {
+    .uploadedRecipes-container {
+        padding: 10px;
+    }
+
+    .uploadedRecipes-container h1 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .recipe-list3 {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .recipe-card3 {
+        padding: 15px;
+    }
+
+    .recipe-card3 h2 {
+        font-size: 18px;
+    }
+
+    .recipe-card3 p {
+        font-size: 14px;
+    }
+
+}

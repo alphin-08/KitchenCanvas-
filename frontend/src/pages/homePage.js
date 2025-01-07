@@ -39,7 +39,7 @@ function Home() {
             <div className="topContainer-home">
                 <button onClick={() => navigate('/likedRecipes')} >View Liked</button>
                 <button onClick={() => navigate('/searchByIngredients')}>Search By Ingredients</button>
-                <button>Upload New</button>
+                <button onClick={() => navigate('/uploadRecipe')}>Upload New</button>
                 <button onClick={() => navigate('/signOut')}>Sign Out</button>
             </div>
 

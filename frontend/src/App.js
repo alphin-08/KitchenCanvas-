@@ -9,6 +9,8 @@ import NotFound from './pages/NotFound';
 import SearchByIngredients from './pages/searchByIngredients'; 
 import LikedRecipes from './pages/likedRecipes';
 import SignOut from './pages/signOut';
+import UploadNewRecipe from './pages/uploadRecipe'
+import UploadedRecipes from './pages/uploadedRecipe'
 
 
 function App() {
@@ -23,7 +25,9 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/searchByIngredients" element={<SearchByIngredients />} />
         <Route path="/likedRecipes" element={<LikedRecipes />} />
-        <Route path="/signOut" element={<SignOut />}/>
+        <Route path="/signOut" element={<SignOut />} />
+        <Route path="/uploadRecipe" element={<UploadNewRecipe />} />
+        <Route path = "/uploadedRecipes" element = {<UploadedRecipes/>} />
       </Routes>
     </Router>
   );

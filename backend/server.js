@@ -190,6 +190,43 @@ app.get('/api/searchRecipes', async (req, res) => {
     }
 });
 
+app.post('/api/uploadRecipe', async (req, res) => {
+    const { userId, recipeName, ingredients, steps } = req.body;
+
+    if (!userId || !recipeName) {
+        return res.status(400).json({ error: 'User ID and Recipe Name are required.' });
+    }
+
+    try {
+        const [result] = await pool.query(
+            'INSERT INTO recipes (user_id, name, ingredients, steps) VALUES (?, ?, ?, ?)',
+            [userId, recipeName, ingredients || '', steps || '']
+        );
+        res.json({ message: 'Recipe uploaded successfully!', recipeId: result.insertId });
+    } catch (error) {
+        console.error('Error uploading recipe:', error);
+        res.status(500).json({ error: 'Failed to upload recipe.' });
+    }
+});
+
+app.get('/api/uploadedRecipes', async (req, res) => {
+    const { userId } = req.query;
+
+    if (!userId) {
+        return res.status(400).json({ error: 'User ID is required.' });
+    }
+
+    try {
+        const [recipes] = await pool.query(
+            'SELECT id, name, ingredients, steps FROM recipes WHERE user_id = ?',
+            [userId]
+        );
+        res.json(recipes);
+    } catch (error) {
+        console.error('Error fetching uploaded recipes:', error);
+        res.status(500).json({ error: 'Failed to fetch uploaded recipes.' });
+    }
+});
 
 // Start the server
 const PORT = process.env.PORT || 5000;
