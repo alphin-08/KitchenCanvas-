@@ -54,7 +54,7 @@ function Home() {
                 {recipes.map((recipe) => (
                     <div
                         key={recipe.id}
-                        className="recipe-card"
+                        className="recipe-cardH"
                         onClick={() => handleCardClick(recipe)}
                     >
                         <img src={recipe.image} alt={recipe.title} />

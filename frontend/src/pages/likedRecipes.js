@@ -80,7 +80,7 @@ function LikedRecipes() {
             <div className="likedRecipes-list">
                 {likedRecipes.length > 0 ? (
                     likedRecipes.map((recipe) => (
-                        <div key={recipe.id} className="recipe-card"   onClick={() => handleRecipeClick(recipe.recipe_id)}>
+                        <div key={recipe.id} className="recipe-cardLR"   onClick={() => handleRecipeClick(recipe.recipe_id)}>
                             <img src={recipe.recipe_image} alt={recipe.recipe_title} />
                             <p>{recipe.recipe_title}</p>
                             <button className="remove-button" onClick={(e) => { e.stopPropagation(); handleRemoveLikedRecipe(recipe.recipe_id); }}>X</button>

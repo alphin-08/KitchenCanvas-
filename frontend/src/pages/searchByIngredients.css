@@ -189,8 +189,196 @@
     margin: 0;
 } 
 
+@media (max-width: 505px) {
 
-@media (max-width: 360px) {
+    /* Header styles */
+    .searchByIngredients-container h1 {
+        font-size: 36px;
+        /* Slightly smaller header */
+        margin-bottom: 15px;
+    }
+
+    .searchByIngredients-container h2 {
+        font-size: 18px;
+        /* Adjusted sub-header size */
+        margin-bottom: 15px;
+    }
+
+    /* Back button */
+    .backsnBT {
+        font-size: 14px;
+        /* Smaller font size */
+        padding: 8px 16px;
+        /* Reduced padding */
+    }
+
+    /* Input and add ingredient button */
+    .search-input input {
+        font-size: 14px;
+        /* Smaller input font */
+        padding: 8px;
+        /* Adjust padding */
+        width: 280px;
+        /* Reduce width slightly */
+    }
+
+    .search-input button {
+        font-size: 14px;
+        /* Smaller button font */
+        padding: 8px 16px;
+        /* Adjust padding */
+    }
+
+    /* Autocomplete dropdown */
+    .autocomplete-dropdown {
+        font-size: 14px;
+        /* Smaller font */
+    }
+
+    /* Ingredient tags */
+    .ingredient-tag {
+        padding: 8px 10px;
+        /* Slightly smaller padding */
+        font-size: 12px;
+        /* Smaller font size */
+    }
+
+    /* Search button */
+    .search-button {
+        font-size: 16px;
+        /* Slightly smaller font */
+        padding: 10px 16px;
+        /* Reduced padding */
+    }
+
+    /* Recipes container */
+    .recipes-container2 {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        /* Smaller card sizes */
+        gap: 15px;
+        /* Adjusted gap */
+    }
+
+    /* Recipe card */
+    .recipe-card2 {
+        padding: 8px;
+        /* Reduced padding */
+        max-width: 180px;
+        /* Smaller max width */
+    }
+
+    .recipe-card2 img {
+        max-width: 100%;
+        /* Image scales with card */
+        height: auto;
+        border-radius: 6px;
+        /* Smaller border radius */
+    }
+
+    .recipe-card2 p {
+        font-size: 14px;
+        /* Smaller font size */
+        margin-top: 5px;
+    }
+}
+
+
+@media (max-width: 455px) {
+
+    /* Header styles */
+    .searchByIngredients-container h1 {
+        font-size: 32px;
+        /* Further reduced header size */
+        margin-bottom: 10px;
+    }
+
+    .searchByIngredients-container h2 {
+        font-size: 16px;
+        /* Adjusted sub-header size */
+        margin-bottom: 10px;
+    }
+
+    /* Back button */
+    .backsnBT {
+        font-size: 12px;
+        /* Smaller font size */
+        padding: 6px 12px;
+        /* Reduced padding */
+    }
+
+    /* Input and add ingredient button */
+    .search-input input {
+        font-size: 12px;
+        /* Smaller input font */
+        padding: 6px;
+        /* Adjust padding */
+        width: 250px;
+        /* Narrower width */
+    }
+
+    .search-input button {
+        font-size: 12px;
+        /* Smaller button font */
+        padding: 6px 12px;
+        /* Reduced padding */
+    }
+
+    /* Autocomplete dropdown */
+    .autocomplete-dropdown {
+        font-size: 12px;
+        /* Reduced font size */
+        width: 250px;
+        /* Match input width */
+    }
+
+    /* Ingredient tags */
+    .ingredient-tag {
+        padding: 6px 8px;
+        /* Smaller padding */
+        font-size: 10px;
+        /* Smaller font size */
+    }
+
+    /* Search button */
+    .search-button {
+        font-size: 14px;
+        /* Slightly smaller font */
+        padding: 8px 14px;
+        /* Reduced padding */
+    }
+
+    /* Recipes container */
+    .recipes-container2 {
+        grid-template-columns: repeat(2, 1fr);
+        /* Keep 2 columns for better fit */
+        gap: 10px;
+        /* Adjusted gap */
+    }
+
+    /* Recipe card */
+    .recipe-card2 {
+        padding: 6px;
+        /* Reduced padding */
+        max-width: 160px;
+        /* Smaller max width */
+    }
+
+    .recipe-card2 img {
+        max-width: 100%;
+        /* Image scales with card */
+        height: auto;
+        border-radius: 6px;
+        /* Smaller border radius */
+    }
+
+    .recipe-card2 p {
+        font-size: 12px;
+        /* Smaller font size */
+        margin-top: 4px;
+    }
+}
+
+@media (max-width: 400px) {
     .searchByIngredients-container {
         padding: 10px;
         text-align: center;
@@ -253,6 +441,7 @@
     }
 
     .recipes-container2 {
+        overflow-y: auto;
         gap: 15px;
     }
 
@@ -267,5 +456,87 @@
 
     .recipe-card2 p {
         font-size: 14px;
+    }
+}
+
+@media (max-width: 255px) {
+    .searchByIngredients-container {
+        padding: 5px;
+        text-align: center;
+    }
+
+    .searchByIngredients-container h1 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .back-button {
+        font-size: 12px;
+        padding: 6px 12px;
+        border-radius: 4px;
+    }
+
+    .search-input {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .search-input input {
+        width: 150px;
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .search-input button {
+        font-size: 12px;
+        padding: 6px 12px;
+        border-radius: 4px;
+    }
+
+    .autocomplete-dropdown {
+        width: 150px;
+        top: 35px;
+    }
+
+    .suggestion-item {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .ingredient-tags {
+        gap: 6px;
+    }
+
+    .ingredient-tag {
+        padding: 6px 10px;
+        font-size: 10px;
+    }
+
+    .ingredient-tag button {
+        font-size: 10px;
+    }
+
+    .search-button {
+        font-size: 14px;
+        padding: 6px 12px;
+        border-radius: 4px;
+    }
+
+    .recipes-container2 {
+        overflow-y: auto;
+        gap: 10px;
+    }
+
+    .recipe-card2 {
+        width: 120px;
+        padding: 6px;
+    }
+
+    .recipe-card2 img {
+        border-radius: 4px;
+    }
+
+    .recipe-card2 p {
+        font-size: 12px;
     }
 }
