@@ -37,7 +37,7 @@ function SearchByIngredients() {
 
     const handleCardClick = async (recipe) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/recipeDetails?id=${recipe.id}`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/recipeDetails?id=${recipe.id}`);
             const detailedRecipe = await response.json();
             navigate('/recipeDetails', { state: { recipe: detailedRecipe } });
         } catch (error) {
@@ -68,7 +68,7 @@ function SearchByIngredients() {
 
         try {
             const query = selectedIngredients.join(',');
-            const response = await fetch(`http://localhost:5000/api/searchByIngredients?ingredients=${query}`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/searchByIngredients?ingredients=${query}`);
             const data = await response.json();
             setRecipes(data); // Set fetched recipes to state
         } catch (error) {

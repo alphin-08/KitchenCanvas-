@@ -12,8 +12,8 @@ function Home() {
         const fetchRecipes = async () => {
             try {
                 const endpoint = searchTerm
-                    ? `http://localhost:5000/api/searchRecipes?query=${searchTerm}`
-                    : `http://localhost:5000/api/recipes`;
+                    ? `${process.env.REACT_APP_BACKEND_URL}/api/searchRecipes?query=${searchTerm}`
+                    : `${process.env.REACT_APP_BACKEND_URL}/api/recipes`;
                 
                 const response = await fetch(endpoint); 
                 const data = await response.json();

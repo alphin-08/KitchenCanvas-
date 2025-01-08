@@ -17,7 +17,7 @@ function LikedRecipes() {
             // Fetch liked recipes from the backend for logged-in users
             const fetchLikedRecipes = async () => {
                 try {
-                    const response = await fetch(`http://localhost:5000/api/likedRecipes?userId=${userId}`);
+                    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/likedRecipes?userId=${userId}`);
                     const data = await response.json();
                     setLikedRecipes(data || []);
                 } catch (error) {
@@ -30,7 +30,7 @@ function LikedRecipes() {
 
     const handleRecipeClick = async (recipeId) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/recipeDetails?id=${recipeId}`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/recipeDetails?id=${recipeId}`);
             const data = await response.json();
 
             if (response.ok) {
@@ -54,7 +54,7 @@ function LikedRecipes() {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/api/likedRecipes`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/likedRecipes`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

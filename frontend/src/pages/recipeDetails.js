@@ -26,7 +26,7 @@ function RecipeDetails() {
                 if (userId) {
                     try {
                         const response = await fetch(
-                            `http://localhost:5000/api/likedRecipes?userId=${userId}`
+                            `${process.env.REACT_APP_BACKEND_URL}/api/likedRecipes?userId=${userId}`
                         );
                         const data = await response.json();
                         const isLiked = data.some(
@@ -92,8 +92,8 @@ function RecipeDetails() {
             }
 
             const url = liked
-                ? 'http://localhost:5000/api/likedRecipes'
-                : 'http://localhost:5000/api/likedRecipes';
+                ? `${process.env.REACT_APP_BACKEND_URL}/api/likedRecipes`
+                : `${process.env.REACT_APP_BACKEND_URL}/api/likedRecipes`;
             const method = liked ? 'DELETE' : 'POST';
 
             fetch(url, {

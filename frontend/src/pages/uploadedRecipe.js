@@ -22,7 +22,7 @@ function UploadedRecipes() {
                 }
 
                 try {
-                    const response = await fetch(`http://localhost:5000/api/uploadedRecipes?userId=${userId}`);
+                    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/uploadedRecipes?userId=${userId}`);
                     const data = await response.json();
                     if (response.ok) {
                         setUploadedRecipes(data);
@@ -54,7 +54,7 @@ function UploadedRecipes() {
                 return;
             }
 
-            fetch('http://localhost:5000/api/deleteUploadedRecipe', {
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/api/deleteUploadedRecipe`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userId, recipeId }),
