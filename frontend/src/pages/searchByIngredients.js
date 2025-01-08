@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './searchByIngredients.css';
 
 function SearchByIngredients() {
@@ -78,7 +78,9 @@ function SearchByIngredients() {
 
     return (
         <div className="searchByIngredients-container">
-            <h1>Kitchen Canvas</h1>
+            <Link to="/homePage" className="home-link">
+                <h1>Kitchen Canvas</h1>
+            </Link>
             <h2>Search Recipes by Ingredients</h2>
             <button className="backsnBT" onClick={() => navigate(-1)}>Go Back</button>
             <div className="search-input">

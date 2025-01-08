@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './likedRecipes.css';
 
 function LikedRecipes() {
@@ -75,7 +75,9 @@ function LikedRecipes() {
 
     return (
         <div className="likedRecipes-container">
-            <h1>Kitchen Canvas</h1>
+            <Link to="/homePage" className="home-link">
+                <h1>Kitchen Canvas</h1>
+            </Link>
             <h2>Liked Recipes</h2>
             <div className="likedRecipes-list">
                 {likedRecipes.length > 0 ? (

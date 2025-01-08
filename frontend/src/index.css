@@ -3,8 +3,8 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: auto;
-  /* Ensure scrolling is enabled */
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 body {
@@ -19,4 +19,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.home-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './uploadedRecipes.css';
 
 function UploadedRecipes() {
@@ -73,7 +73,9 @@ function UploadedRecipes() {
 
     return (
         <div className="uploadedRecipes-container">
-            <h1>Kitchen Canvas</h1>
+            <Link to="/homePage" className="home-link">
+                <h1>Kitchen Canvas</h1>
+            </Link>
             <h2>Your Uploaded Recipes</h2>
             {uploadedRecipes.length > 0 ? (
                 <div className="recipe-list3">

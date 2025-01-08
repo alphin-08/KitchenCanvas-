@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './homePage.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,  Link} from 'react-router-dom';
 
 function Home() {
     const [recipes, setRecipes] = useState([]); // State to store recipes
@@ -34,7 +34,9 @@ function Home() {
     return (
         <div className="mainContainer-home">
             <div className="veryTopContainer-home">
-                <h1>Kitchen Canvas</h1>
+                <Link to="/homePage" className="home-link">
+                    <h1>Kitchen Canvas</h1>
+                </Link>
             </div>
             <div className="topContainer-home">
                 <button onClick={() => navigate('/likedRecipes')} >View Liked</button>

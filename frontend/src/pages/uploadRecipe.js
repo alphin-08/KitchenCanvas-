@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './uploadRecipe.css'; // Create a CSS file for styling
 
 function UploadNewRecipe() {
@@ -67,7 +67,9 @@ function UploadNewRecipe() {
 
     return (
         <div className="uploadNewRecipe-container">
-            <h1>Kitchen Canvas</h1>
+            <Link to="/homePage" className="home-link">
+                <h1>Kitchen Canvas</h1>
+            </Link>
             <h2>Upload New Recipe</h2>
             <div className="form-container">
                 <label>
