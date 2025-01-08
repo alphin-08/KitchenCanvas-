@@ -152,7 +152,6 @@
         align-items: center;
         box-sizing: border-box;
         overflow-y: auto;
-        /* Enable scrolling if content overflows */
     }
 
     /* Header */
@@ -166,7 +165,6 @@
         font-family: "Irish Grover", serif;
         color: #5B3817;
         font-size: 42px;
-        /* Slightly smaller font size */
         margin: 0;
     }
 
@@ -185,7 +183,6 @@
     .topContainer-home button {
         width: 100%;
         max-width: 300px;
-        /* Buttons are smaller than before */
         background-color: #FFFFFF;
         color: #5B3817;
         font-family: 'Georgia', serif;
@@ -193,7 +190,6 @@
         border-radius: 20px;
         padding: 10px;
         font-size: 18px;
-        /* Reduced font size */
         cursor: pointer;
         box-shadow: 0 4px rgba(0, 0, 0, 0.2);
         transition: all 0.3s ease;
@@ -215,10 +211,8 @@
     .middleContainer-home input {
         width: 100%;
         max-width: 300px;
-        /* Matches button width */
         font-family: 'Georgia', serif;
         font-size: 16px;
-        /* Smaller font size */
         padding: 8px;
         border: 2px solid #5B3817;
         border-radius: 20px;
@@ -234,12 +228,9 @@
     .bottomContainer-home {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        /* 2 columns */
         gap: 15px;
-        /* Space between cards */
         width: 100%;
         justify-items: center;
-        /* Center items in each column */
         margin-top: 20px;
     }
 
@@ -272,7 +263,6 @@
     .recipe-cardH p {
         font-family: 'Georgia', serif;
         font-size: 16px;
-        /* Reduced font size */
         color: #5B3817;
         margin: 0;
     }
@@ -296,15 +286,6 @@
         align-items: center;
         box-sizing: border-box;
         overflow-y: scroll;
-        /* Ensures a scroll wheel appears when content overflows */
-    }
-
-    /* Remove any margin collapsing */
-    html,
-    body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
     }
 
     /* Header */
@@ -334,7 +315,6 @@
     .topContainer-home button {
         width: 100%;
         max-width: 340px;
-        /* Increased width for larger buttons */
         background-color: #FFFFFF;
         color: #5B3817;
         font-family: 'Georgia', serif;
@@ -363,7 +343,6 @@
     .middleContainer-home input {
         width: 100%;
         max-width: 340px;
-        /* Matches button width */
         font-family: 'Georgia', serif;
         font-size: 18px;
         padding: 10px;

@@ -19,19 +19,12 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    /* Allow full width responsiveness */
     max-width: 1024px;
-    /* Restrict the maximum width */
     min-width: 768px;
-    /* Ensure it doesn't get narrower than 768px */
     height: 100vh;
-    /* Take up the full viewport height */
     background-color: #BC4749;
-    /* App background */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    /* Optional shadow */
     margin: 0 auto;
-    /* Center horizontally */
 }
 
 .topContainer {

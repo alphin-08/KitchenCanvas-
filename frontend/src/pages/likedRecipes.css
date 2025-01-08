@@ -3,7 +3,6 @@
     padding: 20px;
     background-color: #C3B091;
     min-height: 100vh;
-    /* align-items: center; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,16 +21,11 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     width: 100%;
-    /* Ensure the grid takes full width */
     max-width: 1024px;
-    /* Restrict the max width */
-    /* justify-content: center; */
     gap: 20px;
     padding: 20px;
     max-height: calc(100vh - 200px);
-    /* Ensure it doesn't exceed the viewport height */
     overflow-y: auto;
-    /* Enable scrolling within the recipe list */
     box-sizing: border-box;
 }
 
@@ -92,22 +86,17 @@
 
     .likedRecipes-container h1 {
         font-size: 36px;
-        /* Reduced font size for title */
         margin: 0;
     }
 
     .likedRecipes-list {
         gap: 10px;
-        /* Reduced spacing between recipe cards */
     }
 
     .recipe-cardLR {
         padding: 8px;
-        /* Reduced padding for cards */
         border-radius: 8px;
-        /* Smaller border radius */
         max-width: 180px;
-        /* Smaller card width */
     }
 
     .recipe-cardLR img {
@@ -119,20 +108,16 @@
 
     .recipe-cardLR p {
         font-size: 14px;
-        /* Reduced font size for card text */
     }
 
     .backfromlr {
         font-size: 14px;
-        /* Reduced button font size */
         padding: 8px 16px;
-        /* Smaller padding */
         border-radius: 6px;
     }
 
     .remove-button {
         font-size: 14px;
-        /* Reduced font size for remove button */
         margin-left: 8px;
     }
 }
@@ -152,9 +137,7 @@
     .likedRecipes-list {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        /* Two cards per row */
         gap: 10px;
-        /* Slight gap between cards */
         justify-content: center;
         align-items: center;
         width: 100%;
@@ -162,10 +145,8 @@
 
     .recipe-cardLR {
         padding: 5px;
-        /* Smaller padding */
         border-radius: 6px;
         max-width: 120px;
-        /* Smaller cards */
         text-align: center;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
@@ -173,7 +154,6 @@
     .recipe-cardLR img {
         width: 100%;
         max-width: 100px;
-        /* Smaller images */
         height: auto;
         border-radius: 5px;
         margin-bottom: 5px;
@@ -181,7 +161,6 @@
 
     .recipe-cardLR p {
         font-size: 12px;
-        /* Smaller font size */
     }
 
     .backfromlr {
@@ -201,7 +180,6 @@
 @media (max-width: 360px) {
     .likedRecipes-container {
         padding: 10px;
-        /* Reduce container padding */
     }
 
     .likedRecipes-list {
@@ -211,12 +189,10 @@
 
     .recipe-cardLR {
         padding: 10px;
-        /* Reduce padding for cards */
     }
 
     .recipe-cardLR img {
         max-width: 120px;
-        /* Even smaller image size */
     }
 
     .recipe-cardLR p {
@@ -233,45 +209,3 @@
         font-size: 14px;
     }
 }
-
-/* @media (max-width: 360px) {
-    .likedRecipes-container {
-        padding: 10px;
-        text-align: center;
-        min-height: auto;
-    }
-
-    .likedRecipes-container h1 {
-        font-size: 32px;
-        margin-bottom: 15px;
-    }
-
-    .likedRecipes-list {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        padding: 15px;
-    }
-
-    .recipe-cardLR {
-        max-width: 100%;
-        padding: 8px;
-        border-radius: 8px;
-    }
-
-    .recipe-cardLR img {
-        max-width: 150px;
-        height: auto;
-        margin-bottom: 8px;
-    }
-
-    .backfromlr {
-        font-size: 14px;
-        padding: 8px 16px;
-        border-radius: 6px;
-    }
-
-    .remove-button {
-        font-size: 14px;
-        margin-left: 5px;
-    }
-} */

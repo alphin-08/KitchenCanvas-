@@ -1,13 +1,10 @@
 .recipe-image22 {
     width: 100%;
-        /* Ensure it scales to fit the card */
-        max-width: 600px;
-        /* Prevent it from being too large */
-        height: auto;
-        /* Maintain the aspect ratio */
-        margin: 0 auto;
-        border-radius: 8px;
-        background-color: #ddd;
+    max-width: 600px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 8px;
+    background-color: #ddd;
 }
 .recipeDetails-container {
     display: flex;
@@ -45,20 +42,13 @@
 
 .recipeDetails-content {
     width: 80%;
-        /* Occupies 80% of the container's width */
-        max-width: 800px;
-        /* Add a maximum width for large screens */
-        margin: 20px auto;
-        /* Center the card */
-        background-color: #ffffff;
-        /* Optional: Add a white background for contrast */
-        border-radius: 8px;
-        /* Rounded corners */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        /* Subtle shadow */
-        padding: 20px;
-        /* Add padding inside the card */
-        text-align: center;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
 }
 
 .recipeDetails-content h2 {

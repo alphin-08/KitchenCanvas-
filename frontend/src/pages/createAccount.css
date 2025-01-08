@@ -5,11 +5,8 @@
     align-items: center;
     width: 100%;
     max-width: 1024px;
-    /* Restrict the maximum width */
     min-width: 768px;
-    /* Set the minimum width */
     min-height: 100vh;
-    /* Take up the full viewport height */
     font-family: "Irish Grover", serif;
     background-color: #BC4749;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -228,52 +225,3 @@
         gap: 1rem;
     }
 }
-
-/* @media (max-width: 360px) {
-    .mainContainer-create {
-        padding: 10px;
-        max-width: 100%;
-        min-width: auto;
-        min-height: auto;
-        text-align: center;
-    }
-
-    .topContainer-create h1 {
-        font-size: 32px;
-        margin-bottom: 30px;
-    }
-
-    .middleContainer-create {
-        gap: 20px;
-        margin-bottom: 50px;
-    }
-
-    .middleContainer-create input {
-        max-width: 100%;
-
-        height: 40px;
-
-        font-size: 20px;
-
-    }
-
-    .middleContainer-create input::placeholder {
-        font-size: 16px;
-   
-    }
-
-    .middleContainer-create button,
-    .bottomContainer-create button {
-        max-width: 100%;
- 
-        font-size: 20px;
-
-        padding: 8px 16px;
-
-    }
-
-    .bottomContainer-create {
-        gap: 1.5rem;
-     
-    }
-} */

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './signOut.css'; // Import the CSS file
+import './signOut.css';
 
 function SignOut() {
     const navigate = useNavigate();
@@ -11,7 +11,6 @@ function SignOut() {
         // Simulate fetching username from backend or state
         const fetchUsername = async () => {
             try {
-                // Replace with your actual API or localStorage logic
                 const storedUsername = localStorage.getItem('username') || 'Guest'; 
                 const guestStatus = localStorage.getItem('isGuest') === 'true';
                 setUsername(storedUsername);
