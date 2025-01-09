@@ -18,9 +18,8 @@ app.post('/api/register', async (req, res) => {
     const { username, password } = req.body;
 
     try {
-
-        const [existingUser] = await pool.query(
-            'SELECT * FROM users WHERE username = ?',
+        const { rows: existingUser } = await pool.query(
+            'SELECT * FROM users WHERE username = $1',
             [username]
         );
 
@@ -28,13 +27,18 @@ app.post('/api/register', async (req, res) => {
             return res.status(400).json({ error: 'Username already exists.' });
         }
 
-        const [result] = await pool.query(
-            'INSERT INTO users (username, password) VALUES (?, ?)',
+        const { rows: result } = await pool.query(
+            'INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id',
             [username, password]
         );
-        res.json({ message: 'User registered successfully!', userId: result.insertId });
+        res.json({ message: 'User registered successfully!', userId: result[0].id });
     } catch (error) {
         console.error('Error registering user:', error.message);
+
+         if (error.code === '23505') {
+            return res.status(400).json({ error: 'Username already exists.' });
+        }
+
         res.status(500).json({ error: 'An error occurred while registering the user.' });
     }
 });
@@ -44,8 +48,8 @@ app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        const [rows] = await pool.query(
-            'SELECT * FROM users WHERE username = ? AND password = ?',
+        const { rows } = await pool.query(
+            'SELECT * FROM users WHERE username = $1 AND password = $2',
             [username, password]
         );
 
@@ -65,16 +69,16 @@ app.post('/api/likedRecipes', async (req, res) => {
 
     console.log('Received data:', { userId, recipeId, recipeTitle, recipeImage }); // Debugging
     
-     if (!userId || !recipeId || !recipeTitle || !recipeImage) {
-        return res.status(400).json({ error: 'Missing required fields.' });
-    }
+    //  if (!userId || !recipeId || !recipeTitle || !recipeImage) {
+    //     return res.status(400).json({ error: 'Missing required fields.' });
+    // }
     
     try {
         const [result] = await pool.query(
-            'INSERT INTO liked_recipes (user_id, recipe_id, recipe_title, recipe_image) VALUES (?, ?, ?, ?)',
+            'INSERT INTO liked_recipes (user_id, recipe_id, recipe_title, recipe_image) VALUES ($1, $2, $3, $4) RETURNING id',
             [userId, recipeId, recipeTitle, recipeImage]
         );
-        res.json({ message: 'Recipe liked successfully!', likeId: result.insertId });
+        res.json({ message: 'Recipe liked successfully!', likeId: result.rows[0].id });
     } catch (error) {
         console.error('Error saving liked recipe:', error.message);
         res.status(500).json({ error: 'An error occurred while saving the liked recipe.' });
@@ -88,11 +92,11 @@ app.get('/api/likedRecipes', async (req, res) => {
     console.log('Fetching liked recipes for userId:', userId); // Debugging
 
     try {
-        const [rows] = await pool.query(
-            'SELECT * FROM liked_recipes WHERE user_id = ?',
+        const result = await pool.query(
+            'SELECT * FROM liked_recipes WHERE user_id = $1',
             [userId]
         );
-        res.json(rows);
+        res.json(result.rows);
     } catch (error) {
         console.error('Error fetching liked recipes:', error.message);
         res.status(500).json({ error: 'An error occurred while fetching liked recipes.' });
@@ -100,7 +104,7 @@ app.get('/api/likedRecipes', async (req, res) => {
 });
 
 app.get('/api/searchByIngredients', async (req, res) => {
-    const ingredients = req.query.ingredients;
+    const { ingredients } = req.query;
     try {
         const response = await fetch(
             `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients}&number=10&apiKey=${process.env.SPOONACULAR_API_KEY}`
@@ -159,12 +163,12 @@ app.delete('/api/likedRecipes', async (req, res) => {
     const { userId, recipeId } = req.body;
 
     try {
-        const [result] = await pool.query(
-            'DELETE FROM liked_recipes WHERE user_id = ? AND recipe_id = ?',
+        const result = await pool.query(
+            'DELETE FROM liked_recipes WHERE user_id = $1 AND recipe_id = $2',
             [userId, recipeId]
         );
 
-        if (result.affectedRows > 0) {
+        if (result.rowCount > 0) {
             res.json({ message: 'Recipe removed from liked recipes.' });
         } else {
             res.status(404).json({ error: 'Recipe not found in liked recipes.' });
@@ -200,20 +204,20 @@ app.post('/api/uploadRecipe', async (req, res) => {
 
     try {
         // Insert the recipe into the database
-        const [result] = await pool.query(
-            'INSERT INTO recipes (user_id, name, ingredients, steps) VALUES (?, ?, ?, ?)',
+        const result = await pool.query(
+            'INSERT INTO recipes (user_id, name, ingredients, steps) VALUES ($1, $2, $3, $4) RETURNING id',
             [userId, recipeName.trim(), ingredients?.trim() || '', steps?.trim() || '']
         );
 
         res.status(201).json({ 
             message: 'Recipe uploaded successfully!', 
-            recipeId: result.insertId 
+            recipeId: result.rows[0].id, 
         });
     } catch (error) {
         console.error('Error uploading recipe:', error);
 
         // Handle specific MySQL errors if needed
-        if (error.code === 'ER_NO_REFERENCED_ROW_2') {
+        if (error.code ===  '23503') {
             return res.status(400).json({ error: 'Invalid user ID. User does not exist.' });
         }
 
@@ -231,17 +235,17 @@ app.get('/api/uploadedRecipes', async (req, res) => {
 
     try {
         // Fetch the user's uploaded recipes from the database
-        const [recipes] = await pool.query(
-            'SELECT id, name, ingredients, steps FROM recipes WHERE user_id = ?',
+        const recipes = await pool.query(
+            'SELECT id, name, ingredients, steps FROM recipes WHERE user_id = $1',
             [userId]
         );
 
         // If no recipes found, send an empty array
-        if (recipes.length === 0) {
+        if (recipes.rows.length === 0) {
             return res.status(200).json({ message: 'No recipes found.', recipes: [] });
         }
 
-        res.status(200).json(recipes);
+        res.status(200).json(recipes.rows);
     } catch (error) {
         console.error('Error fetching uploaded recipes:', error);
         res.status(500).json({ error: 'Failed to fetch uploaded recipes.' });
@@ -256,9 +260,9 @@ app.delete('/api/deleteRecipe', async (req, res) => {
     }
 
     try {
-        const [result] = await pool.query('DELETE FROM recipes WHERE id = ? AND user_id = ?', [recipeId, userId]);
+        const result = await pool.query('DELETE FROM recipes WHERE id = $1 AND user_id = $2 RETURNING id', [recipeId, userId]);
 
-        if (result.affectedRows === 0) {
+        if (result.rowCount === 0) {
             return res.status(404).json({ error: 'Recipe not found or does not belong to the user.' });
         }
 
