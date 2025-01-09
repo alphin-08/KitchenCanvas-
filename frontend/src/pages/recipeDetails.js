@@ -113,7 +113,11 @@ function RecipeDetails() {
                         setLiked(!liked);
                     } else {
                         return response.json().then((data) => {
-                            alert(`Error: ${data.error}`);
+                             if (data.error) {
+                                alert(`Error: ${data.error}`);
+                            } else {
+                                alert('An error occurred while saving the liked recipe.');
+                            }
                         });
                     }
                 })

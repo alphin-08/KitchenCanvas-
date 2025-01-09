@@ -252,7 +252,7 @@ app.get('/api/uploadedRecipes', async (req, res) => {
     }
 });
 
-app.delete('/api/deleteRecipe', async (req, res) => {
+app.delete('/api/deleteUploadedRecipe', async (req, res) => {
     const { recipeId, userId } = req.body;
 
     if (!recipeId || !userId) {
