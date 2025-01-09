@@ -74,7 +74,7 @@ app.post('/api/likedRecipes', async (req, res) => {
     // }
     
     try {
-        const [result] = await pool.query(
+        const result = await pool.query(
             'INSERT INTO liked_recipes (user_id, recipe_id, recipe_title, recipe_image) VALUES ($1, $2, $3, $4) RETURNING id',
             [userId, recipeId, recipeTitle, recipeImage]
         );
