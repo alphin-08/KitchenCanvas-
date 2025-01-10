@@ -1,13 +1,22 @@
 # KitchenCanvas-
-is a recipe-sharing platform designed for food enthusiasts to explore, upload, and save recipes. The platform allows users to search for recipes by ingredients, discover trending dishes, and personalize their culinary experience.
+is a recipe-sharing platform designed for food enthusiasts to explore, upload, and save recipes. The platform allows users to search for recipes by ingredients, discover dishes, and personalize their culinary experience.
 
 
 
 
+Tech Stack:
+React- Frontend framework for building the user interface.
+PostgreSQL- Database for storing user data, recipes, and likes.
+Express.js- Backend framework for API creation and server logic.
+Node.js- Runtime environment for the backend.
+Vercel- Hosting for the frontend.
+Render- Hosting for the backend and PostgreSQL database.
+Spoonacular API- For fetching recipes and ingredient-based searches.
 
-***API is super limited so if recipes dont pop up on the homepage it means app is down and have to try again the next day***
 
 
+
+***API is super limited so if recipes dont pop up on the homepage it means api limit has been reached and will only reset the following day***
 
 
 
