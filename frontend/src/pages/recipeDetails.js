@@ -51,6 +51,11 @@ function RecipeDetails() {
     };
 
     const handleLikeRecipe = () => {
+        if (location.state?.fromLikedRecipes) {
+        alert('You are already viewing this recipe from your liked recipes.');
+        return;
+        }
+        
         const isGuest = localStorage.getItem('isGuest') === 'true';
         const guestLikedRecipes =
             JSON.parse(localStorage.getItem('guestLikedRecipes')) || [];

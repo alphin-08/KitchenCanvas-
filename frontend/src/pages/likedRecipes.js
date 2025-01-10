@@ -34,7 +34,7 @@ function LikedRecipes() {
             const data = await response.json();
 
             if (response.ok) {
-                navigate('/recipeDetails', { state: { recipe: data } });
+                navigate('/recipeDetails', { state: { recipe: data, fromLikedRecipes: true  } });
             } else {
                 alert('Failed to fetch recipe details.');
             }

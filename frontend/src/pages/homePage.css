@@ -4,9 +4,11 @@
     align-items: center;
     width: 100%;
     min-height: 100vh;
+    max-height: 100vh;
     background-color: #DAC99B;
-    margin: 0 auto;
     padding-top: 50px;
+    box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .veryTopContainer-home {
@@ -85,9 +87,10 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    justify-items: center;
-    margin-top: 20px;
     padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box;
 }
 
 
@@ -143,14 +146,6 @@
 
     /* General container styling */
     .mainContainer-home {
-        padding: 15px;
-        width: 100%;
-        min-height: 100vh;
-        background-color: #DAC99B;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        box-sizing: border-box;
         overflow-y: auto;
     }
 
@@ -226,12 +221,7 @@
 
     /* Recipe cards */
     .bottomContainer-home {
-        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        width: 100%;
-        justify-items: center;
-        margin-top: 20px;
     }
 
     .recipe-cardH {
@@ -277,15 +267,7 @@
 
     /* General container styling */
     .mainContainer-home {
-        padding: 10px;
-        width: 100%;
-        min-height: 100vh;
-        background-color: #DAC99B;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        box-sizing: border-box;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     /* Header */
@@ -358,12 +340,7 @@
 
     /* Recipe cards */
     .bottomContainer-home {
-        display: grid;
         grid-template-columns: 1fr;
-        gap: 15px;
-        width: 100%;
-        justify-items: center;
-        margin-top: 20px;
     }
 
     .recipe-cardH {
