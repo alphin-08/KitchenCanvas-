@@ -3,10 +3,13 @@
     text-align: center;
     background-color: #C3B091;
     min-height: 100vh;
+    max-height: 100vh;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
 /* Header styles */
@@ -154,8 +157,9 @@
     gap: 20px;
     margin-top: 20px;
     width: 100%;
-    max-height: 100%;
+    max-height: calc(100vh - 200px);
     overflow-y: auto;
+    box-sizing: border-box;
 }
 
 /* Recipe card */
@@ -190,6 +194,9 @@
 } 
 
 @media (max-width: 505px) {
+    .searchByIngredients-container {
+        overflow-y: auto;
+    }
 
     /* Header styles */
     .searchByIngredients-container h1 {
@@ -239,8 +246,8 @@
 
     /* Recipes container */
     .recipes-container2 {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 15px;
+        grid-template-columns: repeat(2, 1fr);
+        max-height: calc(100vh - 150px);
     }
 
     /* Recipe card */
@@ -263,6 +270,9 @@
 
 
 @media (max-width: 455px) {
+    .searchByIngredients-container {
+        overflow-y: auto;
+    }
 
     /* Header styles */
     .searchByIngredients-container h1 {
@@ -313,8 +323,8 @@
 
     /* Recipes container */
     .recipes-container2 {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        grid-template-columns: 1fr;
+        max-height: calc(100vh - 100px);
     }
 
     /* Recipe card */
