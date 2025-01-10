@@ -12,4 +12,4 @@ is a recipe-sharing platform designed for food enthusiasts to explore, upload, a
 
 
 
-Try it out here: [Kitchen Canvas App](kitchen-canvas-one.vercel.app)
+Try it out here: [Kitchen Canvas App](https://kitchen-canvas-one.vercel.app)
