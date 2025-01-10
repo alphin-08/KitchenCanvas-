@@ -5,12 +5,33 @@ is a recipe-sharing platform designed for food enthusiasts to explore, upload, a
 
 
 Tech Stack:
+
+
+
 React- Frontend framework for building the user interface.
+
+
+
 PostgreSQL- Database for storing user data, recipes, and likes.
+
+
+
 Express.js- Backend framework for API creation and server logic.
+
+
+
 Node.js- Runtime environment for the backend.
+
+
+
 Vercel- Hosting for the frontend.
+
+
+
 Render- Hosting for the backend and PostgreSQL database.
+
+
+
 Spoonacular API- For fetching recipes and ingredient-based searches.
 
 
