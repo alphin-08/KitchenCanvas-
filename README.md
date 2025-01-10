@@ -34,7 +34,7 @@ Render- Hosting for the backend and PostgreSQL database.
 
 Spoonacular API- For fetching recipes and ingredient-based searches.
 
-
+---
 
 
 ***API is super limited so if recipes dont pop up on the homepage it means api limit has been reached and will only reset the following day***
