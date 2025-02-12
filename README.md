@@ -37,6 +37,10 @@ Spoonacular API- For fetching recipes and ingredient-based searches.
 ---
 
 ***Data base access expires Feb 8th 2025 so Account Creation or Login will not work untill I update it again***
+
+
+
+
 ***API is super limited so if recipes dont pop up on the homepage it means api limit has been reached and will only reset the following day***
 
 
