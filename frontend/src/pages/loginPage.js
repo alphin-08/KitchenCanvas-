@@ -53,6 +53,7 @@ function Login() {
 
             <div class = "topContainer-login">
                 <h1>Login</h1>
+                <p>Account creation and login are temporarily disabled<br/>because the free hosting limit has expired</p>
             </div>
 
             <div class = "middleContainer-login">
