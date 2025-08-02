@@ -45,16 +45,16 @@ function SearchByIngredients() {
         }
     };
 
-    const handleAddIngredient = () => {
-        const trimmedIngredient = ingredient.trim().toLowerCase();
-        if (trimmedIngredient && !selectedIngredients.includes(trimmedIngredient)) {
-            setSelectedIngredients([...selectedIngredients, trimmedIngredient]);
-            setIngredient('');
-        } else if (trimmedIngredient) {
-            alert(`${ingredient} is already added.`);
-            setIngredient('');
-        }
-    };
+    // const handleAddIngredient = () => {
+    //     const trimmedIngredient = ingredient.trim().toLowerCase();
+    //     if (trimmedIngredient && !selectedIngredients.includes(trimmedIngredient)) {
+    //         setSelectedIngredients([...selectedIngredients, trimmedIngredient]);
+    //         setIngredient('');
+    //     } else if (trimmedIngredient) {
+    //         alert(`${ingredient} is already added.`);
+    //         setIngredient('');
+    //     }
+    // };
 
     const handleRemoveIngredient = (removedIngredient) => {
         setSelectedIngredients(selectedIngredients.filter((ing) => ing !== removedIngredient));
@@ -92,7 +92,7 @@ function SearchByIngredients() {
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setTimeout(() => setIsFocused(false), 200)}
                 />
-                <button onClick={handleAddIngredient}>Add Ingredient</button>
+                {/* <button onClick={handleAddIngredient}>Add Ingredient</button> */}
                 {isFocused && filteredSuggestions.length > 0 && (
                     <div className="autocomplete-dropdown">
                         {filteredSuggestions.map((suggestion, index) => (
