@@ -46,8 +46,15 @@ function LikedRecipes() {
     
     const handleRemoveLikedRecipe = async (recipeId) => {
 
-        const userId = localStorage.getItem('userId');
+        //const userId = localStorage.getItem('userId');
 
+        if (isGuest) {
+            const updatedRecipes = likedRecipes.filter((recipe) => recipe.recipe_id !== recipeId);
+            setLikedRecipes(updatedRecipes);
+            localStorage.setItem('guestLikedRecipes', JSON.stringify(updatedRecipes));
+            return;
+        }
+        
         if (!userId) {
             alert('You need to log in to modify liked recipes.');
             return;
