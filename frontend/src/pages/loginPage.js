@@ -55,10 +55,12 @@ function Login() {
 
                 <div className="topContainer-login">
                     <h1>Login</h1>
-                    <p>Account creation and login are temporarily disabled<br/>because the free hosting limit has expired</p>
+                    <div className="account-disabled-message">
+                        <p>Account creation and login are temporarily disabled<br />because the free hosting limit has expired</p>
+                    </div>
                 </div>
 
-                <div class = "middleContainer-login">
+                <div className="middleContainer-login">
                     <input type='text' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} />
                     <input type='password' placeholder='Password'  value={password} onChange={(e) => setPassword(e.target.value)} />
                     <button onClick={handleLogin}> <b>Login</b></button>
