@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './searchByIngredients.css';
+import '../AppLayout.css';
 
 function SearchByIngredients() {
     const [ingredient, setIngredient] = useState('');
@@ -77,64 +78,66 @@ function SearchByIngredients() {
     };
 
     return (
-        <div className="searchByIngredients-container">
-            <Link to="/homePage" className="home-link">
-                <h1>Kitchen Canvas</h1>
-            </Link>
-            <h2>Search Recipes by Ingredients</h2>
-            <button className="backsnBT" onClick={() => navigate(-1)}>Go Back</button>
-            <div className="search-input">
-                <input
-                    type="text"
-                    placeholder="Type an ingredient..."
-                    value={ingredient}
-                    onChange={(e) => setIngredient(e.target.value)}
-                    onFocus={() => setIsFocused(true)}
-                    onBlur={() => setTimeout(() => setIsFocused(false), 200)}
-                />
-                {/* <button onClick={handleAddIngredient}>Add Ingredient</button> */}
-                {isFocused && filteredSuggestions.length > 0 && (
-                    <div className="autocomplete-dropdown">
-                        {filteredSuggestions.map((suggestion, index) => (
-                            <div
-                                key={index}
-                                className="suggestion-item"
-                                onClick={() => {
-                                    const normalizedSuggestion = suggestion.toLowerCase();
-                                    if (!selectedIngredients.includes(normalizedSuggestion)) {
-                                        setSelectedIngredients([...selectedIngredients, normalizedSuggestion]);
-                                    }
-                                    setIngredient('');
-                                    setIsFocused(false);
-                                }}
-                            >
-                                {suggestion}
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </div>
-            <div className="ingredient-tags">
-                {selectedIngredients.map((ing, index) => (
-                    <div key={index} className="ingredient-tag">
-                        {ing.charAt(0).toUpperCase() + ing.slice(1)} {/* Capitalize the first letter */}
-                        <button onClick={() => handleRemoveIngredient(ing)}>X</button>
-                    </div>
-                ))}
-            </div>
-            <button className="search-button" onClick={handleSearch}>
-                Search Recipes
-            </button>
-
-            {/* Render recipes */}
-            <div className="recipes-container2">
-                {recipes.length > 0 &&
-                    recipes.map((recipe) => (
-                        <div key={recipe.id} className="recipe-card2" onClick={() => handleCardClick(recipe)} >
-                            <img src={recipe.image} alt={recipe.title} />
-                            <p>{recipe.title}</p>
+        <div className="main-container"> 
+            <div className="searchByIngredients-container">
+                <Link to="/homePage" className="home-link">
+                    <h1>Kitchen Canvas</h1>
+                </Link>
+                <h2>Search Recipes by Ingredients</h2>
+                <button className="backsnBT" onClick={() => navigate(-1)}>Go Back</button>
+                <div className="search-input">
+                    <input
+                        type="text"
+                        placeholder="Type an ingredient..."
+                        value={ingredient}
+                        onChange={(e) => setIngredient(e.target.value)}
+                        onFocus={() => setIsFocused(true)}
+                        onBlur={() => setTimeout(() => setIsFocused(false), 200)}
+                    />
+                    {/* <button onClick={handleAddIngredient}>Add Ingredient</button> */}
+                    {isFocused && filteredSuggestions.length > 0 && (
+                        <div className="autocomplete-dropdown">
+                            {filteredSuggestions.map((suggestion, index) => (
+                                <div
+                                    key={index}
+                                    className="suggestion-item"
+                                    onClick={() => {
+                                        const normalizedSuggestion = suggestion.toLowerCase();
+                                        if (!selectedIngredients.includes(normalizedSuggestion)) {
+                                            setSelectedIngredients([...selectedIngredients, normalizedSuggestion]);
+                                        }
+                                        setIngredient('');
+                                        setIsFocused(false);
+                                    }}
+                                >
+                                    {suggestion}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+                <div className="ingredient-tags">
+                    {selectedIngredients.map((ing, index) => (
+                        <div key={index} className="ingredient-tag">
+                            {ing.charAt(0).toUpperCase() + ing.slice(1)} {/* Capitalize the first letter */}
+                            <button onClick={() => handleRemoveIngredient(ing)}>X</button>
                         </div>
                     ))}
+                </div>
+                <button className="search-button" onClick={handleSearch}>
+                    Search Recipes
+                </button>
+
+                {/* Render recipes */}
+                <div className="recipes-container2">
+                    {recipes.length > 0 &&
+                        recipes.map((recipe) => (
+                            <div key={recipe.id} className="recipe-card2" onClick={() => handleCardClick(recipe)} >
+                                <img src={recipe.image} alt={recipe.title} />
+                                <p>{recipe.title}</p>
+                            </div>
+                        ))}
+                </div>
             </div>
         </div>
     );

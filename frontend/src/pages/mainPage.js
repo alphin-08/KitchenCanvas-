@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./mainPage.css";
+import '../AppLayout.css';
 
 function MainScreen() {
     const [startY, setStartY] = useState(null);
@@ -47,23 +48,25 @@ function MainScreen() {
     };
 
     return (
-        <div
-            className="mainContainer"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-        >
-            <div className="topContainer">
-                <h1>Kitchen</h1>
-                <h1>Canvas</h1>
-            </div>
+        <div className="main-container">
+            <div
+                className="mainContainer"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+            >
+                <div className="topContainer">
+                    <h1>Kitchen</h1>
+                    <h1>Canvas</h1>
+                </div>
 
-            <div className="bottomContainer">
-                <button onClick={triggerAnimation}>
-                    <b>Swipe Up</b>
-                </button>
+                <div className="bottomContainer">
+                    <button onClick={triggerAnimation}>
+                        <b>Swipe Up</b>
+                    </button>
+                </div>
             </div>
         </div>
     );

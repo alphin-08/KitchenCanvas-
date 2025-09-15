@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './likedRecipes.css';
+import '../AppLayout.css';
 
 function LikedRecipes() {
     const [likedRecipes, setLikedRecipes] = useState([]);
@@ -81,25 +82,27 @@ function LikedRecipes() {
 
 
     return (
-        <div className="likedRecipes-container">
-            <Link to="/homePage" className="home-link">
-                <h1>Kitchen Canvas</h1>
-            </Link>
-            <h2>Liked Recipes</h2>
-            <div className="likedRecipes-list">
-                {likedRecipes.length > 0 ? (
-                    likedRecipes.map((recipe) => (
-                        <div key={recipe.id} className="recipe-cardLR"   onClick={() => handleRecipeClick(recipe.recipe_id)}>
-                            <img src={recipe.recipe_image} alt={recipe.recipe_title} />
-                            <p>{recipe.recipe_title}</p>
-                            <button className="remove-button" onClick={(e) => { e.stopPropagation(); handleRemoveLikedRecipe(recipe.recipe_id); }}>X</button>
-                        </div>
-                    ))
-                ) : (
-                    <p>No liked recipes found.</p>
-                )}
+        <div className = "main-container"> 
+            <div className="likedRecipes-container">
+                <Link to="/homePage" className="home-link">
+                    <h1>Kitchen Canvas</h1>
+                </Link>
+                <h2>Liked Recipes</h2>
+                <div className="likedRecipes-list">
+                    {likedRecipes.length > 0 ? (
+                        likedRecipes.map((recipe) => (
+                            <div key={recipe.id} className="recipe-cardLR"   onClick={() => handleRecipeClick(recipe.recipe_id)}>
+                                <img src={recipe.recipe_image} alt={recipe.recipe_title} />
+                                <p>{recipe.recipe_title}</p>
+                                <button className="remove-button" onClick={(e) => { e.stopPropagation(); handleRemoveLikedRecipe(recipe.recipe_id); }}>X</button>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No liked recipes found.</p>
+                    )}
+                </div>
+                <button className = "backfromlr" onClick={() => navigate(-1)}>Back</button>
             </div>
-            <button className = "backfromlr" onClick={() => navigate(-1)}>Back</button>
         </div>
     );
 }

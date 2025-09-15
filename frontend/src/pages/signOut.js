@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './signOut.css';
+import '../AppLayout.css';
 
 function SignOut() {
     const navigate = useNavigate();
@@ -39,13 +40,15 @@ function SignOut() {
     };
 
     return (
-        <div className="signOut-container">
-            <h2>Goodbye, {username}!</h2>
-            <p>Are you sure you want to sign out?</p>
-            <button className="signOut-button" onClick={handleSignOut}>
-                Confirm Sign Out
-            </button>
-            <button className = "backfromso" onClick={() => navigate(-1)}>Back</button>
+        <div className="main-container">
+            <div className="signOut-container">
+                <h2>Goodbye, {username}!</h2>
+                <p>Are you sure you want to sign out?</p>
+                <button className="signOut-button" onClick={handleSignOut}>
+                    Confirm Sign Out
+                </button>
+                <button className = "backfromso" onClick={() => navigate(-1)}>Back</button>
+            </div>
         </div>
     );
 }

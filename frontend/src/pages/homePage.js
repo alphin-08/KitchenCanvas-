@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './homePage.css';
-import { useNavigate,  Link} from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import '../AppLayout.css';
 
 function Home() {
     const [recipes, setRecipes] = useState([]); // State to store recipes
@@ -32,37 +33,46 @@ function Home() {
 
 
     return (
-        <div className="mainContainer-home">
-            <div className="veryTopContainer-home">
-                <Link to="/homePage" className="home-link">
-                    <h1>Kitchen Canvas</h1>
-                </Link>
-            </div>
-            <div className="topContainer-home">
-                <button onClick={() => navigate('/likedRecipes')} >View Liked</button>
-                <button onClick={() => navigate('/searchByIngredients')}>Search By Ingredients</button>
-                <button onClick={() => navigate('/uploadRecipe')}>Upload New</button>
-                <button onClick={() => navigate('/signOut')}>Sign Out</button>
-            </div>
+        <div className="main-container">
+            <div className="mainContainer-home">
+                <div className="veryTopContainer-home">
+                    <Link to="/homePage" className="home-link">
+                        <h1>Kitchen Canvas</h1>
+                    </Link>
+                </div>
+                <div className="topContainer-home">
+                    <button onClick={() => navigate('/likedRecipes')} >View Liked</button>
+                    <button onClick={() => navigate('/searchByIngredients')}>Search By Ingredients</button>
+                    <button onClick={() => navigate('/uploadRecipe')}>Upload New</button>
+                    <button onClick={() => navigate('/signOut')}>Sign Out</button>
+                </div>
 
-            
-            <div className="middleContainer-home">
-                <input type="text" placeholder="Search Recipes"  value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)} />
-            </div>
+                
+                <div className="middleContainer-home">
+                    <input type="text" placeholder="Search Recipes"  value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)} />
+                </div>
 
 
-            <div className="bottomContainer-home">
-                {recipes.map((recipe) => (
-                    <div
-                        key={recipe.id}
-                        className="recipe-cardH"
-                        onClick={() => handleCardClick(recipe)}
-                    >
-                        <img src={recipe.image} alt={recipe.title} />
-                        <p>{recipe.title}</p>
-                    </div>
-                ))}
+                <div className="bottomContainer-home">
+                    {recipes.length === 0 ? (
+                        <div className="api-limit-message">
+                            Sorry, our recipe API limit has been reached for today.<br />
+                            Please check back tomorrow for more recipes!
+                        </div>
+                    ) : (
+                        recipes.map((recipe) => (
+                            <div
+                                key={recipe.id}
+                                className="recipe-cardH"
+                                onClick={() => handleCardClick(recipe)}
+                            >
+                                <img src={recipe.image} alt={recipe.title} />
+                                <p>{recipe.title}</p>
+                            </div>
+                        ))
+                    )}
+                </div>
             </div>
         </div>
     );

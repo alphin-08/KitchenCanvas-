@@ -1,6 +1,7 @@
 import { Link, useNavigate} from "react-router-dom";
 import './createAccount.css';
 import React, { useState } from 'react';
+import '../AppLayout.css';
 
 function CreateAccount() {
     const [username, setUsername] = useState('');
@@ -35,25 +36,27 @@ function CreateAccount() {
     };
 
     return (
-        <div class = "mainContainer-create">
+        <div className="main-container">
+            <div class = "mainContainer-create">
 
-            <div class = "topContainer-create">
-                <h1>Create an</h1>
-                <h1>Account</h1>
-            </div>
+                <div class = "topContainer-create">
+                    <h1>Create an</h1>
+                    <h1>Account</h1>
+                </div>
 
-            <div class = "middleContainer-create">
-                <input type='text' placeholder='Create a Username' value={username} onChange={(e) => setUsername(e.target.value)} />
-                <input type='text' placeholder='Create a Password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                <input type='text' placeholder='Re-Enter Password'  value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-            </div>
+                <div class = "middleContainer-create">
+                    <input type='text' placeholder='Create a Username' value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <input type='text' placeholder='Create a Password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type='text' placeholder='Re-Enter Password'  value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                </div>
 
 
-            <div class = "bottomContainer-create">
-                <Link to = '/loginPage'> 
-                    <button><b>Back</b></button>
-                </Link>
-                <button onClick={handleCreateAccount}><b>Create</b></button>
+                <div class = "bottomContainer-create">
+                    <Link to = '/loginPage'> 
+                        <button><b>Back</b></button>
+                    </Link>
+                    <button onClick={handleCreateAccount}><b>Create</b></button>
+                </div>
             </div>
         </div>
     ); 

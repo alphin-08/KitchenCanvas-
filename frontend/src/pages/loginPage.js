@@ -1,6 +1,7 @@
 import './loginPage.css';
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
+import '../AppLayout.css';
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -49,31 +50,33 @@ function Login() {
 
 
     return (
-        <div class = "mainContainer-login">
+        <div className="main-container">
+            <div className="mainContainer-login">
 
-            <div class = "topContainer-login">
-                <h1>Login</h1>
-                <p>Account creation and login are temporarily disabled<br/>because the free hosting limit has expired</p>
-            </div>
+                <div className="topContainer-login">
+                    <h1>Login</h1>
+                    <p>Account creation and login are temporarily disabled<br/>because the free hosting limit has expired</p>
+                </div>
 
-            <div class = "middleContainer-login">
-                <input type='text' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} />
-                <input type='password' placeholder='Password'  value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button onClick={handleLogin}> <b>Login</b></button>
-                {message && (
-                    <p className={message === 'Login successful!' ? "success-message" : "error-message"}>{message}
-                    </p>
-                )}
-            </div>
+                <div class = "middleContainer-login">
+                    <input type='text' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <input type='password' placeholder='Password'  value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <button onClick={handleLogin}> <b>Login</b></button>
+                    {message && (
+                        <p className={message === 'Login successful!' ? "success-message" : "error-message"}>{message}
+                        </p>
+                    )}
+                </div>
 
 
-            <div class = "bottomContainer-login">
-                <Link to = '/createAccount'> 
-                    <button><b>Create an Account</b></button>
-                </Link>
-                <Link to = '/homePage'>
-                    <button onClick={handleGuestLogin}><b>Continue as Guest</b></button>
-                </Link>
+                <div class = "bottomContainer-login">
+                    <Link to = '/createAccount'> 
+                        <button><b>Create an Account</b></button>
+                    </Link>
+                    <Link to = '/homePage'>
+                        <button onClick={handleGuestLogin}><b>Continue as Guest</b></button>
+                    </Link>
+                </div>
             </div>
         </div>
     ); 

@@ -4,7 +4,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
+    width: 100vw;           /* Make it full width */
     background-color: #DAC99B;
     font-family: "Irish Grover", serif;
     text-align: center;

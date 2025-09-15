@@ -1,0 +1,12 @@
+.main-container {
+    min-height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    background-color: #C3B091; /* Or your preferred background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    margin: 0;
+}

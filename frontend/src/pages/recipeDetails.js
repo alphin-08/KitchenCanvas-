@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './recipeDetails.css';
+import '../AppLayout.css';
 
 function RecipeDetails() {
     const location = useLocation();
@@ -140,39 +141,41 @@ function RecipeDetails() {
     }
 
     return (
-        <div className="recipeDetails-container">
-            <h1>Kitchen Canvas</h1>
-            <div className="recipeDetails-content">
-                <h2>{recipe.title}</h2>
-                <img src={recipe.image || 'https://via.placeholder.com/600x400?text=No+Image'} alt={recipe.title || 'No Image Available'} className = "recipe-image22"/>
-                <div className="recipeDetails-actions">
-                    <button
-                        className={`like-button ${liked ? 'liked' : ''}`}
-                        onClick={handleLikeRecipe}
-                    >
-                        ❤️
-                    </button>
-                    <button className="show-recipe-button" onClick={handleShowRecipe}>
-                        {showDetails ? 'Hide Recipe' : 'Show Recipe'}
+        <div className="main-container">
+            <div className="recipeDetails-container">
+                <h1>Kitchen Canvas</h1>
+                <div className="recipeDetails-content">
+                    <h2>{recipe.title}</h2>
+                    <img src={recipe.image || 'https://via.placeholder.com/600x400?text=No+Image'} alt={recipe.title || 'No Image Available'} className = "recipe-image22"/>
+                    <div className="recipeDetails-actions">
+                        <button
+                            className={`like-button ${liked ? 'liked' : ''}`}
+                            onClick={handleLikeRecipe}
+                        >
+                            ❤️
+                        </button>
+                        <button className="show-recipe-button" onClick={handleShowRecipe}>
+                            {showDetails ? 'Hide Recipe' : 'Show Recipe'}
+                        </button>
+                    </div>
+                </div>
+                {showDetails && (
+                    <div className="recipe-details">
+                        <h2>Ingredients</h2>
+                        <ul>
+                            {recipe.extendedIngredients?.map((ingredient, index) => (
+                                <li key={index}>{ingredient.original}</li>
+                            ))}
+                        </ul>
+                        <h2>Instructions</h2>
+                        <p>{cleanInstructions}</p>
+                    </div>
+                )}
+                <div className="backrdBtContainer">
+                    <button className="backrdBt" onClick={handleBack}>
+                        Back
                     </button>
                 </div>
-            </div>
-            {showDetails && (
-                <div className="recipe-details">
-                    <h2>Ingredients</h2>
-                    <ul>
-                        {recipe.extendedIngredients?.map((ingredient, index) => (
-                            <li key={index}>{ingredient.original}</li>
-                        ))}
-                    </ul>
-                    <h2>Instructions</h2>
-                    <p>{cleanInstructions}</p>
-                </div>
-            )}
-            <div className="backrdBtContainer">
-                <button className="backrdBt" onClick={handleBack}>
-                    Back
-                </button>
             </div>
         </div>
     );
