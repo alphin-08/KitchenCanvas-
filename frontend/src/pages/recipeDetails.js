@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './recipeDetails.css';
 import '../AppLayout.css';
@@ -9,6 +9,8 @@ function RecipeDetails() {
     const { recipe } = location.state;
     const [showDetails, setShowDetails] = useState(false);
     const [liked, setLiked] = useState(false);
+    const [notice, setNotice] = useState(null);
+    const noticeTimeoutRef = useRef(null);
 
     useEffect(() => {
         const isGuest = localStorage.getItem('isGuest') === 'true';
@@ -51,10 +53,16 @@ function RecipeDetails() {
         navigate(-1);
     };
 
+    const showNotice = (text, type = 'info', ms = 3000) => {
+        setNotice({ text, type });
+        if (noticeTimeoutRef.current) clearTimeout(noticeTimeoutRef.current);
+        noticeTimeoutRef.current = setTimeout(() => setNotice(null), ms);
+    };
+
     const handleLikeRecipe = () => {
         if (location.state?.fromLikedRecipes) {
-        alert('You are already viewing this recipe from your liked recipes.');
-        return;
+            showNotice('You are already viewing this recipe from your liked recipes.', 'info');
+            return;
         }
         
         const isGuest = localStorage.getItem('isGuest') === 'true';
@@ -146,18 +154,19 @@ function RecipeDetails() {
                 <h1>Kitchen Canvas</h1>
                 <div className="recipeDetails-content">
                     <h2>{recipe.title}</h2>
-                    <img src={recipe.image || 'https://via.placeholder.com/600x400?text=No+Image'} alt={recipe.title || 'No Image Available'} className = "recipe-image22"/>
+                    <img src={recipe.image || 'https://via.placeholder.com/600x400?text=No+Image'} alt={recipe.title || 'No Image Available'} className="recipe-image22" />
                     <div className="recipeDetails-actions">
-                        <button
-                            className={`like-button ${liked ? 'liked' : ''}`}
-                            onClick={handleLikeRecipe}
-                        >
-                            ❤️
-                        </button>
+                        <button className={`like-button ${liked ? 'liked' : ''}`} onClick={handleLikeRecipe}>❤️</button>
                         <button className="show-recipe-button" onClick={handleShowRecipe}>
                             {showDetails ? 'Hide Recipe' : 'Show Recipe'}
                         </button>
                     </div>
+
+                    {notice && (
+                        <div className={`inline-notice ${notice.type}`}>
+                            {notice.text}
+                        </div>
+                    )}
                 </div>
                 {showDetails && (
                     <div className="recipe-details">

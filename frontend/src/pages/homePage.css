@@ -154,6 +154,32 @@
     max-width: 400px;
 }
 
+.search-refresh-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.search-refresh-row input {
+    max-width: 420px;
+    width: 70%;
+}
+
+.refresh-button {
+    font-family: "Irish Grover", serif;
+    padding: 8px 14px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 2px solid #9B6417;
+    background: #fff;
+    color: #5B3817;
+    cursor: pointer;
+}
+.refresh-button:hover { background: #f8efe0; }
+.refresh-button:disabled { opacity: 0.6; cursor: default; }
+
 @media (max-width: 675px) and (min-width: 361px) {
 
     /* General container styling */
