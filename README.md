@@ -26,7 +26,7 @@ Users can search for recipes by ingredients, discover new dishes, and personaliz
 ## 🖼️ Preview
 Here’s a look at Kitchen Canvas in action:  
 
-![Kitchen Canvas Screenshot]()  
+![Kitchen Canvas Screenshot](frontend/assets/kitchenCanvas.png)  
 
 
 
