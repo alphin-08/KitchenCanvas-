@@ -14,6 +14,17 @@ app.get('/', (req, res) => {
     res.send('Backend is running!');
 });
 
+// Simple DB health check to verify connectivity from deployed backend
+app.get('/api/health/db', async (req, res) => {
+    try {
+        const r = await pool.query('SELECT NOW() as now');
+        res.json({ ok: true, now: r.rows[0].now });
+    } catch (err) {
+        console.error('DB health check failed:', err.message);
+        res.status(500).json({ ok: false, error: err.message });
+    }
+});
+
 app.post('/api/register', async (req, res) => {
     const { username, password } = req.body;
 
