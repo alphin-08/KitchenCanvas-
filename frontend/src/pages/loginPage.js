@@ -55,9 +55,7 @@ function Login() {
 
                 <div className="topContainer-login">
                     <h1>Login</h1>
-                    <div className="account-disabled-message">
-                        <p>Account creation and login are temporarily disabled<br />because the free hosting limit has expired</p>
-                    </div>
+                    {/* Login is active; banner removed */}
                 </div>
 
                 <div className="middleContainer-login">
@@ -71,7 +69,7 @@ function Login() {
                 </div>
 
 
-                <div class = "bottomContainer-login">
+                <div className="bottomContainer-login">
                     <Link to = '/createAccount'> 
                         <button><b>Create an Account</b></button>
                     </Link>

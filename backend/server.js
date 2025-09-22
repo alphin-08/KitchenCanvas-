@@ -17,10 +17,17 @@ app.get('/', (req, res) => {
 app.post('/api/register', async (req, res) => {
     const { username, password } = req.body;
 
+    // Basic validation: require non-empty trimmed values
+    const u = (username ?? '').trim();
+    const p = (password ?? '').trim();
+    if (!u || !p) {
+        return res.status(400).json({ error: 'Username and password are required.' });
+    }
+
     try {
         const { rows: existingUser } = await pool.query(
             'SELECT * FROM users WHERE username = $1',
-            [username]
+            [u]
         );
 
         if (existingUser.length > 0) {
@@ -29,7 +36,7 @@ app.post('/api/register', async (req, res) => {
 
         const { rows: result } = await pool.query(
             'INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id',
-            [username, password]
+            [u, p]
         );
         res.json({ message: 'User registered successfully!', userId: result[0].id });
     } catch (error) {

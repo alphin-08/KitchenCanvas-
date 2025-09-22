@@ -23,6 +23,7 @@ yarn-error.log*
 .env
 .env.local
 .env.development
+.env.development.local
 .env.production
 
 # IDE-specific files
