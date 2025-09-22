@@ -68,21 +68,30 @@ app.post('/api/likedRecipes', async (req, res) => {
     const { userId, recipeId, recipeTitle, recipeImage } = req.body;
 
     console.log('Received data:', { userId, recipeId, recipeTitle, recipeImage }); // Debugging
-    
-    //  if (!userId || !recipeId || !recipeTitle || !recipeImage) {
-    //     return res.status(400).json({ error: 'Missing required fields.' });
-    // }
-    
+
+    if (!userId || !recipeId || !recipeTitle) {
+        return res.status(400).json({ error: 'Missing required fields (userId, recipeId, recipeTitle).' });
+    }
+
+    const userIdInt = parseInt(userId, 10);
+    const recipeIdInt = parseInt(recipeId, 10);
+    if (Number.isNaN(userIdInt) || Number.isNaN(recipeIdInt)) {
+        return res.status(400).json({ error: 'Invalid userId or recipeId.' });
+    }
+
     try {
         const result = await pool.query(
             'INSERT INTO liked_recipes (user_id, recipe_id, recipe_title, recipe_image) VALUES ($1, $2, $3, $4) RETURNING id',
-            [userId, recipeId, recipeTitle, recipeImage]
+            [userIdInt, recipeIdInt, recipeTitle, recipeImage || null]
         );
         res.json({ message: 'Recipe liked successfully!', likeId: result.rows[0].id });
     } catch (error) {
-        console.error('Error saving liked recipe:', error.message);
+        console.error('Error saving liked recipe:', error);
         if (error.code === '23505') {
             return res.status(409).json({ error: 'Recipe is already liked by this user.' });
+        }
+        if (error.code === '23503') {
+            return res.status(400).json({ error: 'Invalid user ID. User does not exist.' });
         }
         res.status(500).json({ error: 'An error occurred while saving the liked recipe.' });
     }
