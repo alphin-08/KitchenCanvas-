@@ -12,10 +12,6 @@ React- Frontend framework for building the user interface.
 
 
 
-PostgreSQL- Database for storing user data, recipes, and likes.
-
-
-
 Express.js- Backend framework for API creation and server logic.
 
 
@@ -24,25 +20,21 @@ Node.js- Runtime environment for the backend.
 
 
 
+AWS RDS- Database for storing user data, recipes, and likes.
+
+
+
 Vercel- Hosting for the frontend.
 
 
 
-Render- Hosting for the backend and PostgreSQL database.
+Render- Hosting for the backend
 
 
 
 Spoonacular API- For fetching recipes and ingredient-based searches.
 
 ---
-
-***Data base access expires Feb 8th 2025 so Account Creation or Login will not work untill I update it again***
-
-
-
-
-***API is super limited so if recipes dont pop up on the homepage it means api limit has been reached and will only reset the following day***
-
 
 
 
