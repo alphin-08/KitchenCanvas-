@@ -81,6 +81,9 @@ app.post('/api/likedRecipes', async (req, res) => {
         res.json({ message: 'Recipe liked successfully!', likeId: result.rows[0].id });
     } catch (error) {
         console.error('Error saving liked recipe:', error.message);
+        if (error.code === '23505') {
+            return res.status(409).json({ error: 'Recipe is already liked by this user.' });
+        }
         res.status(500).json({ error: 'An error occurred while saving the liked recipe.' });
     }
 });
