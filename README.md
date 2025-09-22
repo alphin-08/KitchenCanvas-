@@ -3,7 +3,7 @@
 A recipe-sharing platform designed for food enthusiasts to **explore, upload, and save recipes**.  
 Users can search for recipes by ingredients, discover new dishes, and personalize their culinary experience.  
 
-🔗 **Live App:** [Kitchen Canvas](https://kitchen-canvas-one.vercel.app)  
+🔗 **Live App:** [Kitchen Canvas App](https://kitchen-canvas-one.vercel.app)
 
 ---
 
