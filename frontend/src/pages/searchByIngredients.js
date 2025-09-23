@@ -8,6 +8,8 @@ function SearchByIngredients() {
     const [selectedIngredients, setSelectedIngredients] = useState([]);
     const [recipes, setRecipes] = useState([]); // State for storing fetched recipes
     const [isFocused, setIsFocused] = useState(false);
+    const [isSearching, setIsSearching] = useState(false);
+    const [searchMessage, setSearchMessage] = useState('');
     const navigate = useNavigate();
 
     const suggestions = [
@@ -63,10 +65,13 @@ function SearchByIngredients() {
 
     const handleSearch = async () => {
         if (selectedIngredients.length === 0) {
-            alert('Please add at least one ingredient.');
+            setSearchMessage('Please add at least one ingredient to search for recipes.');
             return;
         }
 
+        setIsSearching(true);
+        setSearchMessage(''); // Clear any previous messages
+        
         try {
             const query = selectedIngredients.join(',');
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/searchByIngredients?ingredients=${query}`);
@@ -74,6 +79,9 @@ function SearchByIngredients() {
             setRecipes(data); // Set fetched recipes to state
         } catch (error) {
             console.error('Error fetching recipes:', error);
+            setSearchMessage('Error searching for recipes. Please try again.');
+        } finally {
+            setIsSearching(false);
         }
     };
 
@@ -124,8 +132,13 @@ function SearchByIngredients() {
                         </div>
                     ))}
                 </div>
-                <button className="search-button" onClick={handleSearch}>
-                    Search Recipes
+                {searchMessage && (
+                    <div className="search-message">
+                        {searchMessage}
+                    </div>
+                )}
+                <button className="search-button" onClick={handleSearch} disabled={isSearching}>
+                    {isSearching ? 'Searching...' : 'Search Recipes'}
                 </button>
 
                 {/* Render recipes */}

@@ -137,6 +137,7 @@
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 18px;
+    font-family: "Irish Grover", serif;
     background-color: #9B6417;
     color: #FFFFFF;
     border: none;
@@ -148,6 +149,38 @@
 .search-button:hover {
     background-color: #5B3817;
     transform: translateY(-3px);
+}
+
+.search-button:disabled {
+    background-color: #8A7171;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.search-button:disabled:hover {
+    background-color: #8A7171;
+    transform: none;
+}
+
+/* Search message styling */
+.search-message {
+    background-color: #FFE4B5;
+    color: #8B4513;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: "Irish Grover", serif;
+    border: 2px solid #D2691E;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin: 15px 0;
+    text-align: center;
+    max-width: 400px;
+    animation: fadeInMessage 0.3s ease-in;
+}
+
+@keyframes fadeInMessage {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .recipes-container2 {

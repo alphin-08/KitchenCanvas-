@@ -7,6 +7,7 @@ function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleLogin = async () => {
@@ -15,6 +16,9 @@ function Login() {
             setMessage('Please enter both username and password.');
             return;
         }
+        
+        setIsLoading(true);
+        setMessage(''); // Clear any previous messages
         
         try {
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/login`, {
@@ -37,6 +41,8 @@ function Login() {
             console.error('Error logging in:', error);
             
             setMessage('An error occurred. Please try again.');
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -61,7 +67,9 @@ function Login() {
                 <div className="middleContainer-login">
                     <input type='text' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} />
                     <input type='password' placeholder='Password'  value={password} onChange={(e) => setPassword(e.target.value)} />
-                    <button onClick={handleLogin}> <b>Login</b></button>
+                    <button onClick={handleLogin} disabled={isLoading}> 
+                        <b>{isLoading ? 'Logging in...' : 'Login'}</b>
+                    </button>
                     {message && (
                         <p className={message === 'Login successful!' ? "success-message" : "error-message"}>{message}
                         </p>

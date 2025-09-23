@@ -8,6 +8,7 @@ function UploadNewRecipe() {
     const [ingredients, setIngredients] = useState('');
     const [steps, setSteps] = useState('');
     const [message, setMessage] = useState(''); // Add this line
+    const [isUploading, setIsUploading] = useState(false);
     const navigate = useNavigate();
     const isGuest = localStorage.getItem('isGuest') === 'true';
 
@@ -16,6 +17,9 @@ function UploadNewRecipe() {
             setMessage('Recipe Name is required.');
             return;
         }
+
+        setIsUploading(true);
+        setMessage(''); // Clear any previous messages
 
         if (isGuest) {
             const guestUploadedRecipes = JSON.parse(localStorage.getItem('guestUploadedRecipes')) || [];
@@ -31,6 +35,7 @@ function UploadNewRecipe() {
             const userId = localStorage.getItem('userId');
             if (!userId) {
                 setMessage('You need to be logged in to upload a recipe.');
+                setIsUploading(false);
                 navigate('/login');
                 return;
             }
@@ -59,6 +64,7 @@ function UploadNewRecipe() {
             }
         }
 
+        setIsUploading(false);
         setRecipeName('');
         setIngredients('');
         setSteps('');
@@ -98,7 +104,9 @@ function UploadNewRecipe() {
                             placeholder="Enter steps to prepare the recipe"
                         />
                     </label>
-                    <button className="uploadRecipeBt" onClick={handleUploadRecipe}>Upload Recipe</button>
+                    <button className="uploadRecipeBt" onClick={handleUploadRecipe} disabled={isUploading}>
+                        {isUploading ? 'Uploading...' : 'Upload Recipe'}
+                    </button>
                     <button className="uploadedRecipeBt" onClick={() => navigate('/uploadedRecipes')}>View Uploaded Recipes</button>
                     <button className="backfromUR" onClick={() => navigate(-1)}>Back</button>
                 </div>
