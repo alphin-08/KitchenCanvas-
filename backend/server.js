@@ -2,6 +2,7 @@ import fetch from 'node-fetch';
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import bcrypt from 'bcrypt';
 import pool from './database.js';
 
 dotenv.config();
@@ -45,9 +46,13 @@ app.post('/api/register', async (req, res) => {
             return res.status(400).json({ error: 'Username already exists.' });
         }
 
+        // Hash the password with bcrypt
+        const saltRounds = 12;
+        const hashedPassword = await bcrypt.hash(p, saltRounds);
+
         const { rows: result } = await pool.query(
             'INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id',
-            [u, p]
+            [u, hashedPassword]
         );
         res.json({ message: 'User registered successfully!', userId: result[0].id });
     } catch (error) {
@@ -66,13 +71,25 @@ app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
 
     try {
+        // First, get the user by username only
         const { rows } = await pool.query(
-            'SELECT * FROM users WHERE username = $1 AND password = $2',
-            [username, password]
+            'SELECT * FROM users WHERE username = $1',
+            [username]
         );
 
-        if (rows.length > 0) {
-            res.json({ message: 'Login successful!', user: rows[0] });
+        if (rows.length === 0) {
+            return res.status(401).json({ error: 'Invalid username or password.' });
+        }
+
+        const user = rows[0];
+        
+        // Compare the provided password with the hashed password
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        
+        if (passwordMatch) {
+            // Don't send the hashed password back to the client
+            const { password: _, ...userWithoutPassword } = user;
+            res.json({ message: 'Login successful!', user: userWithoutPassword });
         } else {
             res.status(401).json({ error: 'Invalid username or password.' });
         }
